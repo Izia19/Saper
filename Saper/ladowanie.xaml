@@ -13,12 +13,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-
         <Label Grid.Row="0" Content="SAPER" Style="{StaticResource naglowek}"/>
 
-
-        <ProgressBar Grid.Row="1" Name="loadingProgressBar" Width="300" Height="20"
-                 Margin="0,10,0,0" VerticalAlignment="Top"
-                 HorizontalAlignment="Center" IsIndeterminate="True" Foreground="Pink"/>
+        <ProgressBar Grid.Row="1" IsIndeterminate="True"/>
     </Grid>
 </Window>
