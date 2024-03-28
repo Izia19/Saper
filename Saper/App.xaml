@@ -4,43 +4,115 @@
              xmlns:local="clr-namespace:Saper"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Label" x:Key="naglowek">
+
+        <Style TargetType="ProgressBar">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="50"/>
-            <Setter Property="Foreground" Value="#ff9999"/>
-            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="#FF9999"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="#FF9999"/>
+            <Setter Property="Background" Value="White"/>
         </Style>
+        
         <Style TargetType="Window">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Window">
-                        <Border Background="{TemplateBinding Background}"
-                    CornerRadius="20">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
                             <ContentPresenter/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Grid" x:Key="logowanie_grid">
-            <Setter Property="Background" Value="#ffece5"/>
+        
+        <Style TargetType="Grid" x:Key="glowny_grid">
+            <Setter Property="Background" Value="#FFece5"/>
         </Style>
+
+        <Style TargetType="Border" x:Key="poziomy_grid">
+            <Setter Property="Background" Value="#ABC5EF"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="jeszczeniewiemjakigrid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="D:\c#\Saper\bomba.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="naglowek">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Foreground" Value="#FF9999"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+        </Style>
+
         <Style TargetType="Label" x:Key="napis">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="#ff9999"/>
+            <Setter Property="Foreground" Value="#FF9999"/>
             <Setter Property="FontFamily" Value="Calibri"/>
         </Style>
-        <Style TargetType="TextBox">
+
+        <Style TargetType="Button" x:Key="przycisk_zaloguj">
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#FF9999"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF9999"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#FFECE5"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="poziom_przycisk">
+            <Setter Property="Margin" Value="10 15"/>
+            <Setter Property="Background" Value="#BB9EFA"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="BorderBrush" Value="#9E74F7"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#FFECE5"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Background" Value="pink"/>
+            <Setter Property="Background" Value="#FF9999"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF9999"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFece5"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
         </Style>
     </Application.Resources>
 </Application>
