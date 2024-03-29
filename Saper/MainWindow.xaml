@@ -8,7 +8,7 @@
         Title="MainWindow" Height="800" Width="1000">
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="500"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -19,7 +19,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource poziomy_grid}">
+        <!--Column 1-->
+        <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ciemny_rozowy_grid}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -27,15 +28,41 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <!--Column 1-->
-                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource poziom_przycisk}">Poziom 1</Button>
-                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource poziom_przycisk}">Poziom 2</Button>
-                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource poziom_przycisk}">Poziom 3</Button>
+                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 1</Button>
+                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 2</Button>
+                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 3</Button>
             </Grid>
         </Border>
 
         <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource jeszczeniewiemjakigrid}">
            
         </Border>
+
+        <!--Column 2-->
+        <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource ciemny_rozowy_grid}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0">Nick</Label>
+                <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
+            <DataGrid AutoGenerateColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Miejsce   "/>
+                    <DataGridTextColumn Header="Nick   "/>
+                    <DataGridTextColumn Header="Wynik   "/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}">
+            <Image Source="D:\c#\Saper\icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
+        </Button>
     </Grid>
 </Window>
