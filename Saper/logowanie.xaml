@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
         Title="logowanie" Height="450" Width="800">
-    <Grid Style="{StaticResource logowanie_grid}">
+
+    <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
@@ -21,7 +22,7 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="LOGOWANIE" Style="{StaticResource naglowek}"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Podaj swój nick: " Style="{StaticResource napis}"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="nick"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Height="20" Width="90"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Zaloguj" Style="{StaticResource przycisk_zaloguj}"/>
 
     </Grid>
 </Window>

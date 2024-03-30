@@ -28,8 +28,6 @@ namespace Saper
         {
             ladowanie ladowanie = new ladowanie();
             ladowanie.ShowDialog();
-
-
         }
     }
 }
