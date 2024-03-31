@@ -28,9 +28,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 1</Button>
-                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 2</Button>
-                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom 3</Button>
+                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom łatwy</Button>
+                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom średni</Button>
+                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom trudny</Button>
             </Grid>
         </Border>
 
@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0">Nick</Label>
+                <Label x:Name="nick_u" Grid.Column="0" Content="Nick: "/>
                 <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
             </Grid>
         </Border>
@@ -62,7 +62,7 @@
         </Border>
 
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}">
-            <Image Source="D:\c#\Saper\icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
+            <Image Source="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\pad.png" Width="100" Height="100" VerticalAlignment="Center"/>
         </Button>
     </Grid>
 </Window>
