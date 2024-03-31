@@ -22,7 +22,7 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="LOGOWANIE" Style="{StaticResource naglowek}"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Podaj swój nick: " Style="{StaticResource napis}"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="nick"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Zaloguj" Style="{StaticResource przycisk_zaloguj}"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Zaloguj" Style="{StaticResource przycisk_zaloguj}" Click="Zaloguj"/>
 
     </Grid>
 </Window>
