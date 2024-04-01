@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Title="MainWindow" Height="810" Width="1000">
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -34,9 +34,35 @@
             </Grid>
         </Border>
 
-        <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource jeszczeniewiemjakigrid}">
-           
-        </Border>
+        <Canvas Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Background="#FFCBC1" Margin="15">
+            <Rectangle/>
+            <Rectangle Canvas.Left="50"/>
+            <Rectangle Canvas.Left="100"/>
+            <Rectangle Canvas.Top="50"/>
+            <Rectangle Canvas.Left="50" Canvas.Top="50"/>
+            <Rectangle Canvas.Left="100" Canvas.Top="50"/>
+            <Rectangle Canvas.Left="150"/>
+            <Rectangle Canvas.Top="100"/>
+            <Rectangle Canvas.Left="50" Canvas.Top="100"/>
+            <Rectangle Canvas.Left="100" Canvas.Top="100"/>
+            <Rectangle Canvas.Left="150" Canvas.Top="100"/>
+            <Rectangle Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Rectangle Canvas.Left="50" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Rectangle Canvas.Left="50" Canvas.Top="324" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Canvas.Left="100" Canvas.Top="324" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Canvas.Left="100" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Canvas.Left="420" Canvas.Top="363" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Canvas.Left="420" Canvas.Top="313" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle Canvas.Left="420" Canvas.Top="100"/>
+            <Rectangle Canvas.Left="420"/>
+            <Rectangle Canvas.Left="370"/>
+            <Rectangle Canvas.Left="150" Canvas.Top="150"/>
+            <Rectangle Canvas.Left="200" Canvas.Top="150"/>
+            <Rectangle Canvas.Left="200" Canvas.Top="200"/>
+            <Rectangle Canvas.Left="250" Canvas.Top="150"/>
+            <Rectangle Canvas.Left="250" Canvas.Top="200"/>
+            <Rectangle Canvas.Left="250" Canvas.Top="250"/>
+        </Canvas>
 
         <!--Column 2-->
         <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource ciemny_rozowy_grid}">

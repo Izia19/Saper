@@ -45,7 +45,7 @@
         <Style TargetType="Border" x:Key="jeszczeniewiemjakigrid" BasedOn="{StaticResource BorderBaseStyle}">
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\bomba.png"/>
+                    <ImageBrush ImageSource="D:\c#\saper\bomba.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -169,5 +169,14 @@
         </Style>
 
 
+        <Style TargetType="Canvas">
+            <Style.Resources>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#FFABAB"/>
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="Width" Value="50"/>
+                </Style>
+            </Style.Resources>
+        </Style>
     </Application.Resources>
 </Application>
