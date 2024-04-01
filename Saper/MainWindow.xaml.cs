@@ -16,18 +16,23 @@ namespace Saper
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string n;
         public MainWindow()
         {
+            
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             OpenWindowsAsync();
+            
             InitializeComponent();
-
+            nick_u.Content += " " + n;
         }
 
         private async void OpenWindowsAsync()
         {
             ladowanie ladowanie = new ladowanie();
             ladowanie.ShowDialog();
+            n = ladowanie.n;
+            
         }
     }
 }

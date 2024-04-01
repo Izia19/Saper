@@ -127,7 +127,7 @@
             <Setter Property="BorderBrush" Value="#FF9999"/>
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="D:\c#\Saper\icons\ustawienia.png"/>
+                    <ImageBrush ImageSource="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\ustawienia.png"/>
                 </Setter.Value>
             </Setter>
         </Style>
