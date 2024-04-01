@@ -22,7 +22,7 @@ namespace Saper
     /// </summary>
     public partial class logowanie : Window
     {
-        public string n; // Nie przypisuj wartości tutaj
+        public string n;
 
         public logowanie()
         {
@@ -38,7 +38,7 @@ namespace Saper
             try
             {
                 conn.Open();
-                n = nick.Text; // Pobierz wartość nick.Text po otwarciu okna i wpisaniu tekstu przez użytkownika
+                n = nick.Text;
                 string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @n";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@n", n);
@@ -78,6 +78,8 @@ namespace Saper
                 conn.Close();
             }
         }
+
+
 
     }
 

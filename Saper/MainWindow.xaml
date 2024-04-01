@@ -28,41 +28,75 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom łatwy</Button>
-                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom średni</Button>
-                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource przycisk_poziomy}">Poziom trudny</Button>
+                <ToggleButton Grid.Row="0" Grid.Column="0" x:Name="latwy" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom łatwy</ToggleButton>
+                <ToggleButton Grid.Row="1" Grid.Column="0" x:Name="sredni" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom średni</ToggleButton>
+                <ToggleButton Grid.Row="2" Grid.Column="0" x:Name="trudny" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom trudny</ToggleButton>
             </Grid>
         </Border>
 
-        <Canvas Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Background="#FFCBC1" Margin="15">
-            <Rectangle/>
-            <Rectangle Canvas.Left="50"/>
-            <Rectangle Canvas.Left="100"/>
-            <Rectangle Canvas.Top="50"/>
-            <Rectangle Canvas.Left="50" Canvas.Top="50"/>
-            <Rectangle Canvas.Left="100" Canvas.Top="50"/>
-            <Rectangle Canvas.Left="150"/>
-            <Rectangle Canvas.Top="100"/>
-            <Rectangle Canvas.Left="50" Canvas.Top="100"/>
-            <Rectangle Canvas.Left="100" Canvas.Top="100"/>
-            <Rectangle Canvas.Left="150" Canvas.Top="100"/>
-            <Rectangle Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Top" />
-            <Rectangle Canvas.Left="50" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Rectangle Canvas.Left="50" Canvas.Top="324" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Rectangle Canvas.Left="100" Canvas.Top="324" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Rectangle Canvas.Left="100" Canvas.Top="374" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Rectangle Canvas.Left="420" Canvas.Top="363" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Rectangle Canvas.Left="420" Canvas.Top="313" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Rectangle Canvas.Left="420" Canvas.Top="100"/>
-            <Rectangle Canvas.Left="420"/>
-            <Rectangle Canvas.Left="370"/>
-            <Rectangle Canvas.Left="150" Canvas.Top="150"/>
-            <Rectangle Canvas.Left="200" Canvas.Top="150"/>
-            <Rectangle Canvas.Left="200" Canvas.Top="200"/>
-            <Rectangle Canvas.Left="250" Canvas.Top="150"/>
-            <Rectangle Canvas.Left="250" Canvas.Top="200"/>
-            <Rectangle Canvas.Left="250" Canvas.Top="250"/>
-        </Canvas>
+        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Background="#FFCBC1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="2" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="3" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="4" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="6" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+
+            <TextBlock Grid.Row="8" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="8" Grid.Column="6" Style="{StaticResource plansza_kwadraty}"/>
+
+        </Grid>
+
 
         <!--Column 2-->
         <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource ciemny_rozowy_grid}">
@@ -87,8 +121,8 @@
             </DataGrid>
         </Border>
 
-        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}">
-            <Image Source="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\pad.png" Width="100" Height="100" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">
+            <Image Source="C:\Icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
         </Button>
     </Grid>
 </Window>
