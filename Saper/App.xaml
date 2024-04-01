@@ -27,8 +27,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
+      
         <Style TargetType="Grid" x:Key="glowny_grid">
             <Setter Property="Background" Value="#FFece5"/>
         </Style>
@@ -50,15 +49,7 @@
         <Style TargetType="Border" x:Key="ciemny_rozowy_grid" BasedOn="{StaticResource BorderBaseStyle}">
             <Setter Property="Background" Value="#FF9999"/>
         </Style>
-
-        <Style TargetType="Border" x:Key="jeszczeniewiemjakigrid" BasedOn="{StaticResource BorderBaseStyle}">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="C:\Icons\bomba.png"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
+      
         <Style TargetType="Border" x:Key="jasny_rozowy_grid" BasedOn="{StaticResource BorderBaseStyle}">
             <Setter Property="Background" Value="#FFBEBC"/>
         </Style>

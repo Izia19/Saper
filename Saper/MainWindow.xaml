@@ -106,7 +106,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="nick_u" Grid.Column="0" Content="Nick: "/>
+                <Label x:Name="nick_u" Grid.Column="0" Content=""/>
                 <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
             </Grid>
         </Border>
@@ -120,7 +120,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-
+      
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">
             <Image Source="C:\Icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
         </Button>
