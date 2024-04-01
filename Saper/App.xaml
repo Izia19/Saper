@@ -15,7 +15,7 @@
             <Setter Property="BorderBrush" Value="#FF9999"/>
             <Setter Property="Background" Value="White"/>
         </Style>
-        
+
         <Style TargetType="Window">
             <Setter Property="Template">
                 <Setter.Value>
@@ -27,8 +27,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-       
-        
+
         <Style TargetType="Grid" x:Key="glowny_grid">
             <Setter Property="Background" Value="#FFece5"/>
         </Style>
@@ -40,14 +39,6 @@
 
         <Style TargetType="Border" x:Key="ciemny_rozowy_grid" BasedOn="{StaticResource BorderBaseStyle}">
             <Setter Property="Background" Value="#FF9999"/>
-        </Style>
-
-        <Style TargetType="Border" x:Key="jeszczeniewiemjakigrid" BasedOn="{StaticResource BorderBaseStyle}">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="D:\c#\saper\bomba.png"/>
-                </Setter.Value>
-            </Setter>
         </Style>
 
         <Style TargetType="Border" x:Key="jasny_rozowy_grid" BasedOn="{StaticResource BorderBaseStyle}">
@@ -127,7 +118,7 @@
             <Setter Property="BorderBrush" Value="#FF9999"/>
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\ustawienia.png"/>
+                    <ImageBrush ImageSource="C:\icons\ustawienia.png"/>
                 </Setter.Value>
             </Setter>
         </Style>

@@ -72,7 +72,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="nick_u" Grid.Column="0" Content="Nick: "/>
+                <Label x:Name="nick_u" Grid.Column="0" Content=""/>
                 <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
             </Grid>
         </Border>
@@ -88,7 +88,7 @@
         </Border>
 
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}">
-            <Image Source="C:\Users\Hyperbook\source\repos\Saper\Saper\Saper\Images\pad.png" Width="100" Height="100" VerticalAlignment="Center"/>
+            <Image Source="C:\icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
         </Button>
     </Grid>
 </Window>
