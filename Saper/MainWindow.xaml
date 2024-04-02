@@ -34,7 +34,7 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Background="#FFCBC1" Margin="10">
+        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource plansza_kwadratow}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -58,42 +58,42 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="0" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="0" Grid.Column="0"/>
+            <TextBlock Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Grid.Row="0" Grid.Column="2"/>
+            <TextBlock Grid.Row="0" Grid.Column="3"/>
+            <TextBlock Grid.Row="0" Grid.Column="7"/>
+            <TextBlock Grid.Row="0" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Grid.Row="1" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="2" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0"/>
+            <TextBlock Grid.Row="2" Grid.Column="1"/>
+            <TextBlock Grid.Row="2" Grid.Column="2"/>
+            <TextBlock Grid.Row="2" Grid.Column="3"/>
+            <TextBlock Grid.Row="2" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="3" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="3" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="3" Grid.Column="3"/>
+            <TextBlock Grid.Row="3" Grid.Column="4"/>
+            <TextBlock Grid.Row="3" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="4" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="4" Grid.Column="4"/>
+            <TextBlock Grid.Row="4" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="5" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="5" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="6" Grid.Column="8" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Grid.Row="6" Grid.Column="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="7" Grid.Column="2" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="7" Grid.Column="0"/>
+            <TextBlock Grid.Row="7" Grid.Column="1"/>
+            <TextBlock Grid.Row="7" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="8" Grid.Column="5" Style="{StaticResource plansza_kwadraty}"/>
-            <TextBlock Grid.Row="8" Grid.Column="6" Style="{StaticResource plansza_kwadraty}"/>
+            <TextBlock Grid.Row="8" Grid.Column="5"/>
+            <TextBlock Grid.Row="8" Grid.Column="6"/>
 
         </Grid>
 

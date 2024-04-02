@@ -16,7 +16,7 @@
             <Setter Property="Background" Value="White"/>
         </Style>
 
-        <Style TargetType="Window">
+        <!--<Style TargetType="Window">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Window">
@@ -26,8 +26,9 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
       
+        
         <Style TargetType="Grid" x:Key="glowny_grid">
             <Setter Property="Background" Value="#FFece5"/>
         </Style>
@@ -41,6 +42,33 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
 
+        <Style TargetType="UniformGrid" x:Key="pola">
+            <Style.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="30"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Margin" Value="1"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Background" Value="MediumSpringGreen"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="plansza_kwadratow">
+            <Setter Property="Background" Value="#FFCBC1"/>
+            <Setter Property="Margin" Value="10"/>
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Background" Value="#FFABAB"/>
+                    <Setter Property="Height" Value="50"/>
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Padding" Value="1"/>
+                    <Setter Property="Margin" Value="1"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        
         <Style TargetType="Border" x:Key="BorderBaseStyle">
             <Setter Property="Margin" Value="15"/>
             <Setter Property="CornerRadius" Value="10"/>
@@ -54,6 +82,7 @@
             <Setter Property="Background" Value="#FFBEBC"/>
         </Style>
 
+        
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -76,6 +105,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="50"/>
         </Style>
+
 
         <Style TargetType="Button" x:Key="ButtonBaseStyle">
             <Setter Property="Margin" Value="15"/>
@@ -153,17 +183,7 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
-        <Style TargetType="UniformGrid" x:Key="pola">
-            <Style.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Width" Value="30"/>
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="Margin" Value="1"/>
-                    <Setter Property="Padding" Value="0"/>
-                </Style>
-            </Style.Resources>
-        </Style>
-
+        
         <Style TargetType="TextBox">
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="150"/>
@@ -179,6 +199,7 @@
             <Setter Property="FontFamily" Value="Calibri"/>
         </Style>
 
+        
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="#FFBEBC"/>
@@ -198,6 +219,7 @@
             </Setter>
         </Style>
 
+        
         <Style TargetType="TextBlock" x:Key="poziomy_menu">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -210,12 +232,5 @@
             <Setter Property="Padding" Value="3"/>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="plansza_kwadraty">
-            <Setter Property="Background" Value="#FFABAB"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Margin" Value="1"/>
-        </Style>
     </Application.Resources>
 </Application>

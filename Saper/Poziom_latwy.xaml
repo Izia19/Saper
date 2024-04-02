@@ -28,9 +28,6 @@
             </Grid>
 
             <UniformGrid Grid.Row="1" x:Name="gameGrid" Rows="10" Columns="10" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
-
         </Grid>
 
     </Grid>

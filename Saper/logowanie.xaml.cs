@@ -23,11 +23,24 @@ namespace Saper
     public partial class logowanie : Window
     {
         public string n;
+        public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
         public logowanie()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+
+            CustomMessageBox.MessageBoxYesNo("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego grę?", (result) =>
+            {
+                if (result)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    //jesli nie
+                }
+            });
         }
 
         public void Zaloguj(object sender, RoutedEventArgs e)
@@ -47,15 +60,17 @@ namespace Saper
 
                 if (rowCount > 0)
                 {
-                    MessageBoxResult result = MessageBox.Show("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego gry?", "", MessageBoxButton.YesNo);
-                    if (result == MessageBoxResult.Yes)
+                    CustomMessageBox.MessageBoxYesNo("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego grę?", (result) =>
                     {
-                        this.Close();
-                    }
-                    else
-                    {
-                        // Można zaproponować jakiś nick ale aktualnie jestem zbyt leniwa żeby to zrobić 
-                    }
+                        if (result)
+                        {
+                            this.Close();
+                        }
+                        else
+                        {
+                            //jesli nie
+                        }
+                    });
                 }
                 else
                 {
@@ -65,13 +80,14 @@ namespace Saper
 
                     dodajCmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Dodano nowego użytkownika: " + n);
+                    CustomMessageBox.MessageBoxOk("Dodano: " + n);
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd logowania: " + ex.Message);
+                CustomMessageBox.MessageBoxOk("Błąd logowania: " + ex.Message);
+                
             }
             finally
             {

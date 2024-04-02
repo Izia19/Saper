@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 
@@ -16,6 +17,7 @@ namespace Saper
         public string n;
         public string p;
         public Window window;
+        public static Image bombaImage = new Image { Source = new BitmapImage(new Uri("C:/Icons/bomba.png")), Stretch = Stretch.Fill };
         private Random random = new Random();
         private DispatcherTimer timer;
         private int seconds = 0;
@@ -84,7 +86,7 @@ namespace Saper
             if (button.Tag != null && button.Tag.ToString() == "Bomb")
             {
                 timer.Stop();
-                button.Content = "x";
+                button.Content = bombaImage;
                 MessageBoxResult result = MessageBox.Show("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu", "Boom! Trafiłeś na bombę!", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
