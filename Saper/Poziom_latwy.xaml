@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
-        Title="Poziom_latwy" Height="450" Width="500" Closing="Window_Closing">
+        Title="Poziom_latwy" Closing="Window_Closing">
     <Grid>
         <Grid Style="{StaticResource pansze}">
             <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                 <Button Grid.Column="3" Content="Powrót" Style="{StaticResource poziomy_menu_przycisk}" />
             </Grid>
 
-            <UniformGrid Grid.Row="1" x:Name="gameGrid" Rows="10" Columns="10" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <UniformGrid Grid.Row="1" x:Name="gameGrid" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
     </Grid>

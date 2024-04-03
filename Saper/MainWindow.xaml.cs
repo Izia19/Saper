@@ -17,8 +17,8 @@ namespace Saper
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string n;
-        public string p;
+        public string userNick;
+        public string level;
         public Window thisWindow;
         private ToggleButton lastClickedButton = null;
         public MainWindow()
@@ -28,14 +28,14 @@ namespace Saper
             OpenWindowsAsync();
 
             InitializeComponent();
-            nick_u.Content += " " + n;
+            nick_u.Content += " " + userNick;
         }
 
         private async void OpenWindowsAsync()
         {
             ladowanie ladowanie = new ladowanie();
             ladowanie.ShowDialog();
-            n = ladowanie.n;
+            userNick = ladowanie.n;
         }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
@@ -56,7 +56,7 @@ namespace Saper
                         lastClickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFBEBC");
                     }
                     lastClickedButton = clickedButton;
-                    p = lastClickedButton.Name;
+                    level = lastClickedButton.Name;
                     clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB"); ;
                 }
             }
@@ -64,16 +64,28 @@ namespace Saper
 
         public void Graj(object sender, RoutedEventArgs e)
         {
-            if (p == "latwy")
+            int bombCount = 0;
+            int numberOfButton = 0;
+            if(level == "latwy")
             {
-                Poziom_latwy poziom = new Poziom_latwy();
-                thisWindow = this;
-                this.Hide();
-                poziom.p = p;
-                poziom.n = n;
-                poziom.window = thisWindow;
-                poziom.ShowDialog();
+                bombCount = 10;
+                numberOfButton = 10;
             }
+            else if(level == "sredni")
+            { 
+                numberOfButton = 15;
+                bombCount = 20;
+            }
+            else if (level == "trudny")
+            {
+                numberOfButton = 20;
+                bombCount = 100;
+            }
+            Poziom_latwy poziom = new Poziom_latwy(numberOfButton, bombCount, level, userNick);
+            thisWindow = this;
+            this.Hide();
+            poziom.window = thisWindow;
+            poziom.ShowDialog();
         }
 
     }

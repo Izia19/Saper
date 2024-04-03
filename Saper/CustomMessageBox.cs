@@ -26,7 +26,7 @@ namespace Saper
             {
                 Text = message,
                 TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(10),
+                Margin = new Thickness(5),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 20,
                 FontFamily = new FontFamily("Calibri"),
@@ -94,6 +94,7 @@ namespace Saper
                 Width = 80,
                 Height = 30,
                 FontSize = 20,
+                Margin = new Thickness(0, 0, 0, 4),
                 Style = (Style)Application.Current.FindResource("ButtonBaseStyle"),
                 Tag = MessageBoxResult.No
             };
