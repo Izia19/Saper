@@ -14,10 +14,11 @@ namespace Saper
 {
     public partial class Poziom_latwy : Window
     {
+        public CustomMessageBox CustomMessageBox = new CustomMessageBox();
+
         public string n;
         public string p;
         public Window window;
-        public static Image bombaImage = new Image { Source = new BitmapImage(new Uri("C:/Icons/bomba.png")), Stretch = Stretch.Fill };
         private Random random = new Random();
         private DispatcherTimer timer;
         private int seconds = 0;
@@ -27,6 +28,10 @@ namespace Saper
         private int bombCount = 10;
         private int rightClicksLeft = 10;
         private int remaining_fields = 90;
+
+        public static Image bombaImage = new Image { Source = new BitmapImage(new Uri("C:/Icons/bomba.png")), Stretch = Stretch.Fill };
+        public static Image kwiatekImage = new Image { Source = new BitmapImage(new Uri("C:/Icons/kwiatek.png")), Stretch = Stretch.Fill };
+
 
         public Poziom_latwy()
         {
@@ -87,27 +92,30 @@ namespace Saper
             {
                 timer.Stop();
                 button.Content = bombaImage;
-                MessageBoxResult result = MessageBox.Show("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu", "Boom! Trafiłeś na bombę!", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+
+                CustomMessageBox.MessageBoxYesNo("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu \nBoom! Trafiłeś na bombę!", (result) =>
                 {
-                    gameGrid.Children.Clear();
-                    InitializeComponent();
-                    GenerateGameBoard();
-                    PlaceBombs();
-                    CalculateNeighborBombCounts();
-                    remaining_fields = 90;
-                    rightClicksLeft = 10;
-                    seconds = 0;
-                    minutes = 0;
-                    hours = 0;
-                    czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
-                    timer.Start();
-                }
-                else
-                {
-                    this.Close();
-                    window.Show();
-                }
+                    if (result)
+                    {
+                        gameGrid.Children.Clear();
+                        InitializeComponent();
+                        GenerateGameBoard();
+                        PlaceBombs();
+                        CalculateNeighborBombCounts();
+                        remaining_fields = 90;
+                        rightClicksLeft = 10;
+                        seconds = 0;
+                        minutes = 0;
+                        hours = 0;
+                        czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+                        timer.Start();
+                    }
+                    else
+                    {
+                        this.Close();
+                        window.Show();
+                    }
+                });
             }
             else
             {
@@ -230,7 +238,9 @@ namespace Saper
         private void Button_RightClick(object sender, MouseButtonEventArgs e)
         {
             Button button = (Button)sender;
-            if (button.Content.ToString() == "o")
+            var buttonImage = button.Content as Image;
+
+            if (buttonImage != null && buttonImage.Source == kwiatekImage.Source)
             {
                 button.Content = "";
                 rightClicksLeft++;
@@ -240,13 +250,13 @@ namespace Saper
             {
                 if (rightClicksLeft > 0)
                 {
-                    button.Content = "o";
+                    button.Content = new Image { Source = kwiatekImage.Source, Stretch = Stretch.Fill };
                     rightClicksLeft--;
                     bomby.Text = $"Bomby: {rightClicksLeft}";
                 }
                 else
                 {
-                    MessageBox.Show("Nie masz już dostępnych kliknięć prawym przyciskiem myszy.", "Komunikat", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CustomMessageBox.MessageBoxOk("Nie masz już dostępnych kwiatków ):");
                 }
             }
         }
@@ -257,6 +267,7 @@ namespace Saper
             PlaceBombs();
             CalculateNeighborBombCounts();
             rightClicksLeft = 10;
+            bomby.Text = $"Bomby: {rightClicksLeft}";
             remaining_fields = 90;
             seconds = 0;
             minutes = 0;

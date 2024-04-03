@@ -30,17 +30,6 @@ namespace Saper
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
-            CustomMessageBox.MessageBoxYesNo("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego grę?", (result) =>
-            {
-                if (result)
-                {
-                    this.Close();
-                }
-                else
-                {
-                    //jesli nie
-                }
-            });
         }
 
         public void Zaloguj(object sender, RoutedEventArgs e)
