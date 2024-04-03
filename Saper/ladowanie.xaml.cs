@@ -20,8 +20,9 @@ namespace Saper
     public partial class ladowanie : Window
     {
         public string userNick;
-        public ladowanie()
+        public ladowanie(string userNick)
         {
+            this.userNick = userNick;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             OpenWindowsAsync();
