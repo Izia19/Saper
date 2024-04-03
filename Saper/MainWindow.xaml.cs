@@ -33,9 +33,8 @@ namespace Saper
 
         private async void OpenWindowsAsync()
         {
-            ladowanie ladowanie = new ladowanie();
+            ladowanie ladowanie = new ladowanie(userNick);
             ladowanie.ShowDialog();
-            userNick = ladowanie.n;
         }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
