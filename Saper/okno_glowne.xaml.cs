@@ -15,26 +15,20 @@ namespace Saper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class okno_glowne : Window
     {
         public string userNick;
         public string level;
         public Window thisWindow;
         private ToggleButton lastClickedButton = null;
-        public MainWindow()
+        public okno_glowne()
         {
 
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            OpenWindowsAsync();
+            //OpenWindowsAsync();
 
             InitializeComponent();
             nick_u.Content += " " + userNick;
-        }
-
-        private async void OpenWindowsAsync()
-        {
-            ladowanie ladowanie = new ladowanie(userNick);
-            ladowanie.ShowDialog();
         }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
@@ -65,13 +59,13 @@ namespace Saper
         {
             int bombCount = 0;
             int numberOfButton = 0;
-            if(level == "latwy")
+            if (level == "latwy")
             {
                 bombCount = 10;
                 numberOfButton = 10;
             }
-            else if(level == "sredni")
-            { 
+            else if (level == "sredni")
+            {
                 numberOfButton = 15;
                 bombCount = 20;
             }
