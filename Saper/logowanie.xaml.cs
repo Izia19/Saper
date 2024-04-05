@@ -23,14 +23,14 @@ namespace Saper
     public partial class logowanie : Window
     {
         public string userNick;
+        public Window window;
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
-        public logowanie(string userNick)
+        public logowanie(Window window)
         {
-            this.userNick = userNick;
+            this.window = window;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
         }
 
         public void Zaloguj(object sender, RoutedEventArgs e)
@@ -55,6 +55,8 @@ namespace Saper
                         if (result)
                         {
                             this.Close();
+                            okno_glowne okno_Glowne = new okno_glowne();
+                            okno_Glowne.ShowDialog();
                         }
                         else
                         {
@@ -72,6 +74,8 @@ namespace Saper
 
                     CustomMessageBox.MessageBoxOk("Dodano: " + userNick);
                     this.Close();
+                    okno_glowne okno_Glowne = new okno_glowne();
+                    okno_Glowne.ShowDialog();
                 }
             }
             catch (Exception ex)
