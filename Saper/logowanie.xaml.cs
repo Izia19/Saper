@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,13 +24,10 @@ namespace Saper
     public partial class logowanie : Window
     {
         public string userNick;
-        public Window window;
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
-        public logowanie(Window window)
+        public logowanie()
         {
-            this.window = window;
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
@@ -55,8 +53,6 @@ namespace Saper
                         if (result)
                         {
                             this.Close();
-                            okno_glowne okno_Glowne = new okno_glowne();
-                            okno_Glowne.ShowDialog();
                         }
                         else
                         {
@@ -74,8 +70,6 @@ namespace Saper
 
                     CustomMessageBox.MessageBoxOk("Dodano: " + userNick);
                     this.Close();
-                    okno_glowne okno_Glowne = new okno_glowne();
-                    okno_Glowne.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -88,9 +82,5 @@ namespace Saper
                 conn.Close();
             }
         }
-
-
-
     }
-
 }

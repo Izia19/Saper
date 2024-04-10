@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Okno główne" Height="810" Width="1000">
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
@@ -112,11 +113,11 @@
         </Border>
 
         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
-            <DataGrid AutoGenerateColumns="True">
+            <DataGrid x:Name="user_wyniki" AutoGenerateColumns="True" ItemsSource="{Binding}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Miejsce   "/>
-                    <DataGridTextColumn Header="Nick   "/>
-                    <DataGridTextColumn Header="Wynik   "/>
+                    <DataGridTextColumn Header="Miejsce   " Binding="{Binding Miejsce}"/>
+                    <DataGridTextColumn Header="Nick   " Binding="{Binding Ncick}"/>
+                    <DataGridTextColumn Header="Wynik   " Binding="{Binding Wynik}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

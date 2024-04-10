@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -19,16 +21,29 @@ namespace Saper
     {
         public string userNick;
         public string level;
-        public Window thisWindow;
+        public Window window_okno_glowne;
         private ToggleButton lastClickedButton = null;
+
         public okno_glowne()
         {
+            User user = new User("1","2","3");
+            List<User> lista = new List<User>();
+            lista.Add(user);
 
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //OpenWindowsAsync();
 
+            user_wyniki.ItemsSource = lista;
+
+            OpenWindowsAsync();
             InitializeComponent();
+            window_okno_glowne = this;
             nick_u.Content += " " + userNick;
+        }
+
+        private async void OpenWindowsAsync()
+        {
+            ladowanie ladowanie = new ladowanie();
+            ladowanie.ShowDialog();
+            this.userNick = ladowanie.userNick;
         }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
@@ -74,10 +89,9 @@ namespace Saper
                 numberOfButton = 20;
                 bombCount = 100;
             }
-            Poziom_latwy poziom = new Poziom_latwy(numberOfButton, bombCount, level, userNick);
-            thisWindow = this;
+   
+            poziomy poziom = new poziomy(numberOfButton, bombCount, level, userNick, window_okno_glowne);
             this.Hide();
-            poziom.window = thisWindow;
             poziom.ShowDialog();
         }
 
