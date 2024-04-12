@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.ObjectModel;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,13 +28,6 @@ namespace Saper
 
         public okno_glowne()
         {
-            User user = new User("1","2","3");
-            List<User> lista = new List<User>();
-            lista.Add(user);
-
-
-            user_wyniki.ItemsSource = lista;
-
             OpenWindowsAsync();
             InitializeComponent();
             window_okno_glowne = this;
@@ -65,8 +60,57 @@ namespace Saper
                     }
                     lastClickedButton = clickedButton;
                     level = lastClickedButton.Name;
-                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB"); ;
+                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB");
+                    Tabela_wynikow();
                 }
+            }
+
+            
+        }
+
+        public void Tabela_wynikow()
+        {
+            List<User> lista = new List<User>();
+            try
+            {
+                string connectionString = "server=localhost;user id=root;password=;database=saper";
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                if (level == "latwy")
+                {
+                    conn.Open();
+                    string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik DESC LIMIT 10";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@level", level);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int i = 1;
+                        while (reader.Read())
+                        {
+                            string nick = reader.GetString(0);
+                            string wynik = reader.GetString(1);
+                            User user = new User(i.ToString(), nick, wynik);
+                            lista.Add(user);
+                            i++;
+                        }
+                    }
+
+
+                    user_wyniki.ItemsSource = lista;
+
+                }
+                else if (level == "sredni")
+                {
+                    
+                }
+                else if (level == "trudny")
+                {
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Błąd " + e);
             }
         }
 

@@ -188,7 +188,7 @@
             <Setter Property="FontFamily" Value="Calibri"/>
         </Style>
 
-        
+
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="#FFBEBC"/>
@@ -206,9 +206,37 @@
                     </Style>
                 </Setter.Value>
             </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="#FFBEBC"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        
+
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="#FFBEBC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FFBEBC"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFece5"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <Style TargetType="TextBlock" x:Key="poziomy_menu">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>

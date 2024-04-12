@@ -113,13 +113,30 @@
         </Border>
 
         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
-            <DataGrid x:Name="user_wyniki" AutoGenerateColumns="True" ItemsSource="{Binding}">
+            <!--<DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Miejsce   " Binding="{Binding Miejsce}"/>
                     <DataGridTextColumn Header="Nick   " Binding="{Binding Ncick}"/>
                     <DataGridTextColumn Header="Wynik   " Binding="{Binding Wynik}"/>
                 </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>-->
+            <ListView x:Name="user_wyniki" ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Background" Value="#FFBEBC"/>
+                                <Setter Property="Foreground" Value="#FFece5"/>
+                                <Setter Property="BorderBrush" Value="#FFBEBC"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Header="Miejsce" DisplayMemberBinding="{Binding Miejsce}" Width="Auto"/>
+                        <GridViewColumn Header="Nick" DisplayMemberBinding="{Binding Nick}" Width="Auto"/>
+                        <GridViewColumn Header="Wynik" DisplayMemberBinding="{Binding Wynik}" Width="Auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </Border>
 
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">
