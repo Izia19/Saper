@@ -12,13 +12,12 @@ using System.Windows.Threading;
 
 namespace Saper
 {
-    public partial class Poziom_latwy : Window
+    public partial class poziomy : Window
     {
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
         public string userNick;
         public string level;
-        public Window window;
         private Random random = new Random();
         private DispatcherTimer timer;
 
@@ -37,28 +36,28 @@ namespace Saper
 
         public int numberOfButton;
 
-        public Window window2;
+        public Window window_poziomy;
+        public Window window_okno_glowne;
 
-        public Poziom_latwy(int numberOfButton, int bombCount, string level, string userNick)
+        public poziomy(int numberOfButton, int bombCount, string level, string userNick, Window window_okno_glowne)
         {
-            window2 = this;
+            this.window_okno_glowne = window_okno_glowne;
+            window_poziomy = this;
             if(level == "latwy")
             {
-                window2.Height = 450;
-                window2.Width = 500;
+                window_poziomy.Height = 450;
+                window_poziomy.Width = 500;
             }
             if(level == "sredni")
             {
-                window2.Height = 600;
-                window2.Width = 650;
+                window_poziomy.Height = 600;
+                window_poziomy.Width = 650;
             }
             if (level == "trudny")
             {
-                window2.Height = 800;
-                window2.Width = 850;
+                window_poziomy.Height = 800;
+                window_poziomy.Width = 850;
             }
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
             this.numberOfButton = numberOfButton;
             this.gameButtons = new Button[numberOfButton, numberOfButton];
             this.bombCount = bombCount;
@@ -154,7 +153,7 @@ namespace Saper
                     {
 
                         this.Close();
-                        window.Show();
+                        window_okno_glowne.Show();
                     }
                 });
             }
@@ -330,13 +329,5 @@ namespace Saper
             }
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (window != null && !window.IsVisible)
-            {
-                window.Show();
-            }
-        }
-
     }
 }

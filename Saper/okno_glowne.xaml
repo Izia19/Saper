@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Okno główne" Height="810" Width="1000">
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
@@ -112,13 +113,30 @@
         </Border>
 
         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
-            <DataGrid AutoGenerateColumns="True">
+            <!--<DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Miejsce   "/>
-                    <DataGridTextColumn Header="Nick   "/>
-                    <DataGridTextColumn Header="Wynik   "/>
+                    <DataGridTextColumn Header="Miejsce   " Binding="{Binding Miejsce}"/>
+                    <DataGridTextColumn Header="Nick   " Binding="{Binding Ncick}"/>
+                    <DataGridTextColumn Header="Wynik   " Binding="{Binding Wynik}"/>
                 </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>-->
+            <ListView x:Name="user_wyniki" ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Background" Value="#FFBEBC"/>
+                                <Setter Property="Foreground" Value="#FFece5"/>
+                                <Setter Property="BorderBrush" Value="#FFBEBC"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn Header="Miejsce" DisplayMemberBinding="{Binding Miejsce}" Width="Auto"/>
+                        <GridViewColumn Header="Nick" DisplayMemberBinding="{Binding Nick}" Width="Auto"/>
+                        <GridViewColumn Header="Wynik" DisplayMemberBinding="{Binding Wynik}" Width="Auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </Border>
 
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">

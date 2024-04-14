@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.ObjectModel;
+using System.Reflection.PortableExecutable;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -19,16 +23,22 @@ namespace Saper
     {
         public string userNick;
         public string level;
-        public Window thisWindow;
+        public Window window_okno_glowne;
         private ToggleButton lastClickedButton = null;
+
         public okno_glowne()
         {
-
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //OpenWindowsAsync();
-
+            OpenWindowsAsync();
             InitializeComponent();
+            window_okno_glowne = this;
             nick_u.Content += " " + userNick;
+        }
+
+        private async void OpenWindowsAsync()
+        {
+            ladowanie ladowanie = new ladowanie();
+            ladowanie.ShowDialog();
+            this.userNick = ladowanie.userNick;
         }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
@@ -50,8 +60,57 @@ namespace Saper
                     }
                     lastClickedButton = clickedButton;
                     level = lastClickedButton.Name;
-                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB"); ;
+                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB");
+                    Tabela_wynikow();
                 }
+            }
+
+            
+        }
+
+        public void Tabela_wynikow()
+        {
+            List<User> lista = new List<User>();
+            try
+            {
+                string connectionString = "server=localhost;user id=root;password=;database=saper";
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                if (level == "latwy")
+                {
+                    conn.Open();
+                    string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik DESC LIMIT 10";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@level", level);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int i = 1;
+                        while (reader.Read())
+                        {
+                            string nick = reader.GetString(0);
+                            string wynik = reader.GetString(1);
+                            User user = new User(i.ToString(), nick, wynik);
+                            lista.Add(user);
+                            i++;
+                        }
+                    }
+
+
+                    user_wyniki.ItemsSource = lista;
+
+                }
+                else if (level == "sredni")
+                {
+                    
+                }
+                else if (level == "trudny")
+                {
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Błąd " + e);
             }
         }
 
@@ -74,10 +133,9 @@ namespace Saper
                 numberOfButton = 20;
                 bombCount = 100;
             }
-            Poziom_latwy poziom = new Poziom_latwy(numberOfButton, bombCount, level, userNick);
-            thisWindow = this;
+   
+            poziomy poziom = new poziomy(numberOfButton, bombCount, level, userNick, window_okno_glowne);
             this.Hide();
-            poziom.window = thisWindow;
             poziom.ShowDialog();
         }
 

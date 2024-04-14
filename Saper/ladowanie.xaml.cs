@@ -19,9 +19,9 @@ namespace Saper
     /// </summary>
     public partial class ladowanie : Window
     {
+        public string userNick;
         public ladowanie()
         {
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             OpenWindowsAsync();
         }
@@ -29,9 +29,10 @@ namespace Saper
         private async void OpenWindowsAsync()
         {
             await Task.Delay(5000);
-            this.Hide();
-            logowanie logowanie = new logowanie(this);
+            this.Close();
+            logowanie logowanie = new logowanie();        
             logowanie.ShowDialog();
+            this.userNick = logowanie.userNick;
         }
     }
 }
