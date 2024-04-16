@@ -25,7 +25,7 @@ namespace Saper
         private int minutes = 0;
         private int hours = 0;
 
-        private Button[,] gameButtons; 
+        private Button[,] gameButtons;
 
         private int bombCount;
         private int rightClicksCount;
@@ -43,12 +43,12 @@ namespace Saper
         {
             this.window_okno_glowne = window_okno_glowne;
             window_poziomy = this;
-            if(level == "latwy")
+            if (level == "latwy")
             {
                 window_poziomy.Height = 450;
                 window_poziomy.Width = 500;
             }
-            if(level == "sredni")
+            if (level == "sredni")
             {
                 window_poziomy.Height = 600;
                 window_poziomy.Width = 650;
@@ -76,9 +76,9 @@ namespace Saper
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             gameGrid.Rows = numberOfButton;
-            gameGrid.Columns = numberOfButton; 
+            gameGrid.Columns = numberOfButton;
 
-            timer.Start();   
+            timer.Start();
         }
         private void GenerateGameBoard()
         {
@@ -159,10 +159,51 @@ namespace Saper
             }
             else
             {
-                button.Content = button.Tag;
+                if (button.Tag == null)
+                {
+                    OdkryjSasiedniePola(row, col);
+                }
+                else
+                {
+                    button.Content = button.Tag;
+                }
             }
             remaining_fields -= 1;
             CheckGameResult();
+        }
+        private void OdkryjSasiedniePola(int row, int col)
+        {
+            for (int i = Math.Max(0, row - 1); i <= Math.Min(numberOfButton - 1, row + 1); i++)
+            {
+                for (int j = Math.Max(0, col - 1); j <= Math.Min(numberOfButton - 1, col + 1); j++)
+                {
+                    Button button = gameButtons[i, j];
+
+                    if (button.IsEnabled)
+                    {
+                        button.IsEnabled = false;
+                        
+                        
+                        if (button.Tag.ToString() == "Bomb")
+                        {
+                            button.Content = bombaImage;
+                        }
+                        else
+                        {
+                            button.Content = button.Tag;
+                        }
+
+                        remaining_fields -= 1;
+
+
+                        if (button.Tag == null)
+                        {
+                            OdkryjSasiedniePola(i, j);
+                        }
+                        
+                    }
+                }
+            }
         }
         private void CalculateNeighborBombCounts()
         {
