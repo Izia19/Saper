@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,11 +23,11 @@ namespace Saper
     /// </summary>
     public partial class logowanie : Window
     {
-        public string n;
+        public string userNick;
+        public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
         public logowanie()
         {
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
@@ -38,49 +39,48 @@ namespace Saper
             try
             {
                 conn.Open();
-                n = nick.Text;
-                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @n";
+                userNick = nick.Text;
+                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@n", n);
+                cmd.Parameters.AddWithValue("@userNick", userNick);
 
                 int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (rowCount > 0)
                 {
-                    MessageBoxResult result = MessageBox.Show("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego gry?", "", MessageBoxButton.YesNo);
-                    if (result == MessageBoxResult.Yes)
+                    CustomMessageBox.MessageBoxYesNo("Użytkownik o podanym nicku już istnieje. Chcesz kontynuować jego grę?", (result) =>
                     {
-                        this.Close();
-                    }
-                    else
-                    {
-                        // Można zaproponować jakiś nick ale aktualnie jestem zbyt leniwa żeby to zrobić 
-                    }
+                        if (result)
+                        {
+                            this.Close();
+                        }
+                        else
+                        {
+                            //jesli nie
+                        }
+                    });
                 }
                 else
                 {
-                    string dodajQuery = "INSERT INTO rekordy (Nick) VALUES (@n)";
+                    string dodajQuery = "INSERT INTO rekordy (Nick) VALUES (@userNick)";
                     MySqlCommand dodajCmd = new MySqlCommand(dodajQuery, conn);
-                    dodajCmd.Parameters.AddWithValue("@n", n);
+                    dodajCmd.Parameters.AddWithValue("@userNick", userNick);
 
                     dodajCmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Dodano nowego użytkownika: " + n);
+                    CustomMessageBox.MessageBoxOk("Dodano: " + userNick);
                     this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd logowania: " + ex.Message);
+                CustomMessageBox.MessageBoxOk("Błąd logowania: " + ex.Message);
+                
             }
             finally
             {
                 conn.Close();
             }
         }
-
-
-
     }
-
 }
