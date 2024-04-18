@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Okno główne" Height="810" Width="1000">
+
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -108,7 +109,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="nick_u" Grid.Column="0" Content=""/>
-                <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
+                <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}" Click="Ustawienia">
+                    <Image Source="C:\Icons\ustawienia.png"/>
+                </Button>
             </Grid>
         </Border>
 
