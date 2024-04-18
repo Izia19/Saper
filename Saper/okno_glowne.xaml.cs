@@ -21,6 +21,8 @@ namespace Saper
     /// </summary>
     public partial class okno_glowne : Window
     {
+        public CustomMessageBox messageBox = new CustomMessageBox();
+
         public string userNick;
         public string level;
         public Window window_okno_glowne;
@@ -75,38 +77,24 @@ namespace Saper
             {
                 string connectionString = "server=localhost;user id=root;password=;database=saper";
                 MySqlConnection conn = new MySqlConnection(connectionString);
-                if (level == "latwy")
-                {
-                    conn.Open();
-                    string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik DESC LIMIT 10";
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@level", level);
+                conn.Open();
+                string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik DESC LIMIT 10";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@level", level);
 
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    int i = 1;
+                    while (reader.Read())
                     {
-                        int i = 1;
-                        while (reader.Read())
-                        {
-                            string nick = reader.GetString(0);
-                            string wynik = reader.GetString(1);
-                            User user = new User(i.ToString(), nick, wynik);
-                            lista.Add(user);
-                            i++;
-                        }
+                        string nick = reader.GetString(0);
+                        string wynik = reader.GetString(1);
+                        User user = new User(i.ToString(), nick, wynik);
+                        lista.Add(user);
+                        i++;
                     }
-
-
-                    user_wyniki.ItemsSource = lista;
-
                 }
-                else if (level == "sredni")
-                {
-                    
-                }
-                else if (level == "trudny")
-                {
-                    
-                }
+                user_wyniki.ItemsSource = lista;
             }
             catch (Exception e)
             {
@@ -139,5 +127,9 @@ namespace Saper
             poziom.ShowDialog();
         }
 
+        private void Ustawienia(object sender, RoutedEventArgs e)
+        {
+            messageBox.MessageBoxUstawienia("dupa");
+        }
     }
 }

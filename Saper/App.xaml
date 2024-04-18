@@ -152,16 +152,14 @@
             <Setter Property="Margin" Value="15"/>
         </Style>
 
-        <Style TargetType="Button" x:Key="przycisk_ustawienia">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="50"/>
+        <Style TargetType="Button" x:Key="przycisk_ustawienia" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
             <Setter Property="Margin" Value="10 15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="#FF9999"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="C:\Icons\ustawienia.png"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="#FF9999"/>
         </Style>
 
         <Style TargetType="Button" x:Key="poziomy_menu_przycisk" BasedOn="{StaticResource ButtonBaseStyle}">
@@ -172,7 +170,28 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
-        
+        <Style TargetType="ToggleButton" x:Key="ToogleButtonSlider">
+            <Setter Property="MaxHeight" Value="30"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="MaxWidth" Value="60"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="#FFBEBC" CornerRadius="15">
+                            <Ellipse x:Name="circle" Fill="#FF9999" HorizontalAlignment="Left" Margin="4" Width="22"></Ellipse>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="circle" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <Style TargetType="TextBox">
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="150"/>
@@ -249,5 +268,7 @@
             <Setter Property="Padding" Value="3"/>
         </Style>
 
+        
+       
     </Application.Resources>
 </Application>
