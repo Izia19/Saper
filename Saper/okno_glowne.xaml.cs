@@ -21,7 +21,7 @@ namespace Saper
     /// </summary>
     public partial class okno_glowne : Window
     {
-        public CustomMessageBox messageBox = new CustomMessageBox();
+        public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
         public string userNick;
         public string level;
@@ -129,7 +129,7 @@ namespace Saper
 
         private void Ustawienia(object sender, RoutedEventArgs e)
         {
-            messageBox.MessageBoxUstawienia("dupa");
+            CustomMessageBox.MessageBoxUstawienia();
         }
     }
 }

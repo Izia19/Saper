@@ -140,7 +140,7 @@ namespace Saper
                 : MessageBoxResult.None;
         }
 
-        public void MessageBoxUstawienia(string message)
+        public void MessageBoxUstawienia()
         {
             var customMessageBox = new Window
             {
@@ -151,26 +151,28 @@ namespace Saper
                 WindowStyle = WindowStyle.None,
             };
 
-            var textBlock = new TextBlock
+            var title = new TextBlock
             {
-                Text = message,
+                Text = "Ustawienia",
                 TextWrapping = TextWrapping.Wrap,
                 Margin = new Thickness(5),
                 HorizontalAlignment = HorizontalAlignment.Center,
-                FontSize = 20,
+                FontSize = 15,
                 FontFamily = new FontFamily("Calibri"),
                 FontWeight = FontWeights.Bold,
                 Foreground = new SolidColorBrush(ciemnyRoz),
             };
 
-            var okButton = new Button
+            var bezpiecznaStrefa = new TextBlock
             {
-                Content = "OK",
-                Width = 80,
-                Height = 30,
-                FontSize = 20,
-                Style = (Style)Application.Current.FindResource("ButtonBaseStyle"),
-
+                Text = "Bezpieczna strefa:",
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(5),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                FontSize = 15,
+                FontFamily = new FontFamily("Calibri"),
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(ciemnyRoz),
             };
 
             var toggleButton = new ToggleButton
@@ -178,13 +180,23 @@ namespace Saper
                 Style = (Style)Application.Current.FindResource("ToogleButtonSlider")
             };
 
+            var zapiszButton = new Button
+            {
+                Content = "ZAPISZ",
+                Width = 100,
+                Height = 30,
+                FontSize = 20,
+                Style = (Style)Application.Current.FindResource("ButtonBaseStyle"),
+
+            };
+
             toggleButton.Checked += toggleButtonChecked;
-            okButton.Click += (sender, args) => customMessageBox.Close();
+            zapiszButton.Click += (sender, args) => customMessageBox.Close();
 
             var stackPanel = new StackPanel();
-            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(bezpiecznaStrefa);
             stackPanel.Children.Add(toggleButton);
-            stackPanel.Children.Add(okButton);
+            stackPanel.Children.Add(zapiszButton);
 
             customMessageBox.Content = stackPanel;
 
