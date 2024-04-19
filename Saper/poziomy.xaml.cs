@@ -109,18 +109,12 @@ namespace Saper
             while (bombIndices.Count < bombCount)
             {
                 int index = random.Next(0, numberOfButton * numberOfButton);
-                bombIndices.Add(index);
-            }
-
-            int clickedIndex = clickedRow * numberOfButton + clickedCol;
-            foreach (int index in bombIndices.ToList())
-            {
                 int row = index / numberOfButton;
                 int col = index % numberOfButton;
 
-                if (Math.Abs(clickedRow - row) <= 1 && Math.Abs(clickedCol - col) <= 1)
+                if (Math.Abs(clickedRow - row) > 1 || Math.Abs(clickedCol - col) > 1)
                 {
-                    bombIndices.Remove(index);
+                    bombIndices.Add(index);
                 }
             }
 
