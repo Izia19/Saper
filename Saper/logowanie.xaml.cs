@@ -29,6 +29,7 @@ namespace Saper
         public logowanie()
         {
             InitializeComponent();
+            //CustomMessageBox.MessageBoxUstawienia();
         }
 
         public void Zaloguj(object sender, RoutedEventArgs e)
