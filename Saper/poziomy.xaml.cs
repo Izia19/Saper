@@ -76,7 +76,12 @@ namespace Saper
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             gameGrid.Rows = numberOfButton;
-            gameGrid.Columns = numberOfButton;           
+            gameGrid.Columns = numberOfButton;
+
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
         }
 
         private void FirstButtonClick(int row, int col)
@@ -84,11 +89,10 @@ namespace Saper
             PlaceBombs(row, col);
             CalculateNeighborBombCounts();
             OdkryjSasiedniePola(row, col);
-            timer.Start();
         }
-
         private void GenerateGameBoard()
         {
+            
             for (int i = 0; i < numberOfButton; i++)
             {
                 for (int j = 0; j < numberOfButton; j++)
@@ -127,7 +131,6 @@ namespace Saper
 
             CalculateNeighborBombCounts();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -149,6 +152,7 @@ namespace Saper
 
             if (!bombsPlaced)
             {
+                timer.Start();
                 FirstButtonClick(row, col);
                 bombsPlaced = true;
             }
@@ -187,7 +191,6 @@ namespace Saper
             remaining_fields -= 1;
             CheckGameResult();
         }
-
         private void OdkryjSasiedniePola(int row, int col)
         {
             for (int i = Math.Max(0, row - 1); i <= Math.Min(numberOfButton - 1, row + 1); i++)
@@ -210,7 +213,6 @@ namespace Saper
                 }
             }
         }
-
         private void CalculateNeighborBombCounts()
         {
             for (int i = 0; i < numberOfButton; i++)
@@ -347,20 +349,19 @@ namespace Saper
         {
             GameRestart();
         }
-
         public void GameRestart()
         {
+            timer.Stop();
             gameGrid.Children.Clear();
             bombsPlaced = false;
             GenerateGameBoard();
-            rightClicksCount = 10;
+            rightClicksCount = bombCount;
             bomby.Text = $"Bomby: {rightClicksCount}";
-            remaining_fields = 90;
+            remaining_fields = numberOfButton * numberOfButton - bombCount;
             seconds = 0;
             minutes = 0;
             hours = 0;
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
-            timer.Start();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -377,7 +378,6 @@ namespace Saper
             }
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
         }
-
         private void ButtonPowrot(object sender, RoutedEventArgs e)
         {
             this.Close();

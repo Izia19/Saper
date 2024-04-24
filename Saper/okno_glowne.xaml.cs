@@ -78,7 +78,7 @@ namespace Saper
                 string connectionString = "server=localhost;user id=root;password=;database=saper";
                 MySqlConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
-                string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik DESC LIMIT 10";
+                string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik LIMIT 10";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@level", level);
 
@@ -108,13 +108,13 @@ namespace Saper
             int numberOfButton = 0;
             if (level == "latwy")
             {
-                bombCount = 10;
                 numberOfButton = 10;
+                bombCount = 15;
             }
             else if (level == "sredni")
             {
                 numberOfButton = 15;
-                bombCount = 20;
+                bombCount = 40;
             }
             else if (level == "trudny")
             {
