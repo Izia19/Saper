@@ -291,10 +291,14 @@ namespace Saper
                             cmd.ExecuteNonQuery();
 
                             CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę i ustanowiłeś nowy rekord!");
+                            this.Close();
+                            window_okno_glowne.Show();
                         }
                         else
                         {
                             CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę ale nie pobiłeś swojego rekordu!");
+                            this.Close();
+                            window_okno_glowne.Show();
                         }
                     }
                     else

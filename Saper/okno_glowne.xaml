@@ -116,14 +116,16 @@
         </Border>
 
         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
-            <!--<DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Miejsce   " Binding="{Binding Miejsce}"/>
-                    <DataGridTextColumn Header="Nick   " Binding="{Binding Ncick}"/>
-                    <DataGridTextColumn Header="Wynik   " Binding="{Binding Wynik}"/>
-                </DataGrid.Columns>
-            </DataGrid>-->
             <ListView x:Name="user_wyniki" ItemsSource="{Binding}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
                         <GridView.ColumnHeaderContainerStyle>
@@ -139,7 +141,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
+<!--dddkkkad-->
         </Border>
 
         <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">
