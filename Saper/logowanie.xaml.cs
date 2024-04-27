@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,13 +25,11 @@ namespace Saper
     {
         public string userNick;
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
+        public Random random = new Random();
 
-        public logowanie(string userNick)
+        public logowanie()
         {
-            this.userNick = userNick;
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
         }
 
         public void Zaloguj(object sender, RoutedEventArgs e)
@@ -58,7 +57,26 @@ namespace Saper
                         }
                         else
                         {
-                            //jesli nie
+                            bool jestNick = true;
+                            while (jestNick)
+                            {
+                                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
+                                MySqlCommand cmd = new MySqlCommand(query, conn);
+                                cmd.Parameters.AddWithValue("@userNick", userNick);
+
+                                int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
+
+                                if(rowCount > 0)
+                                {
+                                    string dodajDoNicku = random.Next(0, 10).ToString();
+                                    userNick += dodajDoNicku;
+                                }
+                                else
+                                {
+                                    jestNick = false;
+                                }
+                            }
+                            nick.Text = userNick;
                         }
                     });
                 }
@@ -84,9 +102,5 @@ namespace Saper
                 conn.Close();
             }
         }
-
-
-
     }
-
 }

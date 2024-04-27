@@ -1,11 +1,12 @@
-﻿<Window x:Class="Saper.Poziom_latwy"
+﻿<Window x:Class="Saper.poziomy"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
-        Title="Poziom_latwy" Closing="Window_Closing">
+        WindowStartupLocation="CenterScreen"
+        Title="Gra">
     <Grid>
         <Grid Style="{StaticResource pansze}">
             <Grid.RowDefinitions>
@@ -24,7 +25,7 @@
                 <TextBlock Grid.Column="0" x:Name="czas" Style="{StaticResource poziomy_menu}"/>
                 <TextBlock Grid.Column="1" x:Name="bomby" Style="{StaticResource poziomy_menu}"/>
                 <Button Grid.Column="2" Content="Restart" Click="RestartButton_Click" Style="{StaticResource poziomy_menu_przycisk}"/>
-                <Button Grid.Column="3" Content="Powrót" Style="{StaticResource poziomy_menu_przycisk}" />
+                <Button Grid.Column="3" Content="Powrót" Click="ButtonPowrot" Style="{StaticResource poziomy_menu_przycisk}"/>
             </Grid>
 
             <UniformGrid Grid.Row="1" x:Name="gameGrid" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>

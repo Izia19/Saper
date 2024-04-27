@@ -12,13 +12,14 @@ using System.Windows.Threading;
 
 namespace Saper
 {
-    public partial class Poziom_latwy : Window
+    public partial class poziomy : Window
     {
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
+        private bool bombsPlaced = false;
+
         public string userNick;
         public string level;
-        public Window window;
         private Random random = new Random();
         private DispatcherTimer timer;
 
@@ -26,7 +27,7 @@ namespace Saper
         private int minutes = 0;
         private int hours = 0;
 
-        private Button[,] gameButtons; 
+        private Button[,] gameButtons;
 
         private int bombCount;
         private int rightClicksCount;
@@ -37,28 +38,28 @@ namespace Saper
 
         public int numberOfButton;
 
-        public Window window2;
+        public Window window_poziomy;
+        public Window window_okno_glowne;
 
-        public Poziom_latwy(int numberOfButton, int bombCount, string level, string userNick)
+        public poziomy(int numberOfButton, int bombCount, string level, string userNick, Window window_okno_glowne)
         {
-            window2 = this;
-            if(level == "latwy")
+            this.window_okno_glowne = window_okno_glowne;
+            window_poziomy = this;
+            if (level == "latwy")
             {
-                window2.Height = 450;
-                window2.Width = 500;
+                window_poziomy.Height = 450;
+                window_poziomy.Width = 500;
             }
-            if(level == "sredni")
+            if (level == "sredni")
             {
-                window2.Height = 600;
-                window2.Width = 650;
+                window_poziomy.Height = 600;
+                window_poziomy.Width = 650;
             }
             if (level == "trudny")
             {
-                window2.Height = 800;
-                window2.Width = 850;
+                window_poziomy.Height = 800;
+                window_poziomy.Width = 850;
             }
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
             this.numberOfButton = numberOfButton;
             this.gameButtons = new Button[numberOfButton, numberOfButton];
             this.bombCount = bombCount;
@@ -69,20 +70,29 @@ namespace Saper
 
             InitializeComponent();
             GenerateGameBoard();
-            PlaceBombs();
-            CalculateNeighborBombCounts();
 
             bomby.Text = $"Bomby: {rightClicksCount}";
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             gameGrid.Rows = numberOfButton;
-            gameGrid.Columns = numberOfButton; 
+            gameGrid.Columns = numberOfButton;
 
-            timer.Start();   
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+        }
+
+        private void FirstButtonClick(int row, int col)
+        {
+            PlaceBombs(row, col);
+            CalculateNeighborBombCounts();
+            OdkryjSasiedniePola(row, col);
         }
         private void GenerateGameBoard()
         {
+            
             for (int i = 0; i < numberOfButton; i++)
             {
                 for (int j = 0; j < numberOfButton; j++)
@@ -96,14 +106,20 @@ namespace Saper
                 }
             }
         }
-        private void PlaceBombs()
+        private void PlaceBombs(int clickedRow, int clickedCol)
         {
             HashSet<int> bombIndices = new HashSet<int>();
 
             while (bombIndices.Count < bombCount)
             {
                 int index = random.Next(0, numberOfButton * numberOfButton);
-                bombIndices.Add(index);
+                int row = index / numberOfButton;
+                int col = index % numberOfButton;
+
+                if (Math.Abs(clickedRow - row) > 1 || Math.Abs(clickedCol - col) > 1)
+                {
+                    bombIndices.Add(index);
+                }
             }
 
             foreach (int index in bombIndices)
@@ -112,6 +128,8 @@ namespace Saper
                 int col = index % numberOfButton;
                 gameButtons[row, col].Tag = "Bomb";
             }
+
+            CalculateNeighborBombCounts();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -119,8 +137,11 @@ namespace Saper
             button.IsEnabled = false;
             var buttonImage = button.Content as Image;
 
-            int row = Grid.GetRow(button);
-            int col = Grid.GetColumn(button);
+            int index = gameGrid.Children.IndexOf(button);
+            int columns = gameGrid.Columns;
+            int row = index / columns;
+            int col = index % columns;
+
 
             if (buttonImage != null && buttonImage.Source == kwiatekImage.Source)
             {
@@ -128,42 +149,69 @@ namespace Saper
                 rightClicksCount++;
                 bomby.Text = $"Bomby: {rightClicksCount}";
             }
-            if (button.Tag != null && button.Tag.ToString() == "Bomb")
+
+            if (!bombsPlaced)
             {
-                timer.Stop();
-                button.Content = bombaImage;
-
-                CustomMessageBox.MessageBoxYesNo("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu", (result) =>
-                {
-                    if (result)
-                    {
-                        gameGrid.Children.Clear();
-                        InitializeComponent();
-                        GenerateGameBoard();
-                        PlaceBombs();
-                        CalculateNeighborBombCounts();
-                        remaining_fields = 90;
-                        rightClicksCount = 10;
-                        seconds = 0;
-                        minutes = 0;
-                        hours = 0;
-                        czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
-                        timer.Start();
-                    }
-                    else
-                    {
-
-                        this.Close();
-                        window.Show();
-                    }
-                });
+                timer.Start();
+                FirstButtonClick(row, col);
+                bombsPlaced = true;
             }
             else
             {
-                button.Content = button.Tag;
+                if (button.Tag != null && button.Tag.ToString() == "Bomb")
+                {
+                    timer.Stop();
+                    button.Content = bombaImage;
+
+                    CustomMessageBox.MessageBoxYesNo("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu", (result) =>
+                    {
+                        if (result)
+                        {
+                            GameRestart();
+                        }
+                        else
+                        {
+                            this.Close();
+                            window_okno_glowne.Show();
+                        }
+                    });
+                }
+                else
+                {
+                    if (button.Tag == null)
+                    {
+                        OdkryjSasiedniePola(row, col);
+                    }
+                    else
+                    {
+                        button.Content = button.Tag;
+                    }
+                } 
             }
             remaining_fields -= 1;
             CheckGameResult();
+        }
+        private void OdkryjSasiedniePola(int row, int col)
+        {
+            for (int i = Math.Max(0, row - 1); i <= Math.Min(numberOfButton - 1, row + 1); i++)
+            {
+                for (int j = Math.Max(0, col - 1); j <= Math.Min(numberOfButton - 1, col + 1); j++)
+                {
+                    Button button = gameButtons[i, j];
+
+                    if (button.IsEnabled)
+                    {
+                        button.IsEnabled = false;
+                        button.Content = button.Tag;
+                        remaining_fields -= 1;
+
+                        if (button.Tag == null)
+                        {
+                            OdkryjSasiedniePola(i, j);
+                        }
+                    }
+                }
+            }
         }
         private void CalculateNeighborBombCounts()
         {
@@ -197,7 +245,6 @@ namespace Saper
                     }
                 }
             }
-
             return bombCount;
         }
         private void CheckGameResult()
@@ -218,7 +265,7 @@ namespace Saper
                     int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
 
                     TimeSpan gameTime = new TimeSpan(hours, minutes, seconds);
-                    int gameSeconds = (int)gameTime.TotalSeconds; // Konwersja na sekundy
+                    int gameSeconds = (int)gameTime.TotalSeconds;
 
                     if (rowCount > 0)
                     {
@@ -232,11 +279,10 @@ namespace Saper
                         cmd.CommandText = query;
                         string time = Convert.ToString(cmd.ExecuteScalar());
 
-                        int bestTime = Convert.ToInt32(double.Parse(time)); // Konwersja najlepszego czasu na sekundy
+                        int bestTime = Convert.ToInt32(double.Parse(time));
 
                         if (gameSeconds < bestTime)
                         {
-                            // Aktualizacja najlepszego czasu
                             query = "UPDATE rekordy SET Wynik = @wynik WHERE Id = @id";
                             cmd.Parameters.Clear();
                             cmd.Parameters.AddWithValue("@wynik", gameSeconds);
@@ -245,15 +291,18 @@ namespace Saper
                             cmd.ExecuteNonQuery();
 
                             CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę i ustanowiłeś nowy rekord!");
+                            this.Close();
+                            window_okno_glowne.Show();
                         }
                         else
                         {
                             CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę ale nie pobiłeś swojego rekordu!");
+                            this.Close();
+                            window_okno_glowne.Show();
                         }
                     }
                     else
                     {
-                        // Wstawienie nowego rekordu
                         query = "INSERT INTO rekordy (Nick, Wynik, Poziom) VALUES (@n, @wynik, @p)";
                         cmd.CommandText = query;
                         cmd.Parameters.Clear();
@@ -302,18 +351,21 @@ namespace Saper
         }
         private void RestartButton_Click(object sender, RoutedEventArgs e)
         {
+            GameRestart();
+        }
+        public void GameRestart()
+        {
+            timer.Stop();
             gameGrid.Children.Clear();
+            bombsPlaced = false;
             GenerateGameBoard();
-            PlaceBombs();
-            CalculateNeighborBombCounts();
-            rightClicksCount = 10;
+            rightClicksCount = bombCount;
             bomby.Text = $"Bomby: {rightClicksCount}";
-            remaining_fields = 90;
+            remaining_fields = numberOfButton * numberOfButton - bombCount;
             seconds = 0;
             minutes = 0;
             hours = 0;
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
-            timer.Start();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -330,13 +382,10 @@ namespace Saper
             }
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ButtonPowrot(object sender, RoutedEventArgs e)
         {
-            if (window != null && !window.IsVisible)
-            {
-                window.Show();
-            }
+            this.Close();
+            window_okno_glowne.Show();
         }
-
     }
 }
