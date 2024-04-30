@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Drawing;
 using System.Windows.Controls.Primitives;
 using Org.BouncyCastle.Tls;
+using System.Diagnostics;
 
 namespace Saper
 {
@@ -180,6 +181,16 @@ namespace Saper
                 Style = (Style)Application.Current.FindResource("ToogleButtonSlider")
             };
 
+            var wylogujButton = new Button
+            {
+                Content = "WYLOGUJ",
+                Width = 100,
+                Height = 30,
+                FontSize = 20,
+                Style = (Style)Application.Current.FindResource("ButtonBaseStyle"),
+
+            };
+
             var zapiszButton = new Button
             {
                 Content = "ZAPISZ",
@@ -191,11 +202,13 @@ namespace Saper
             };
 
             toggleButton.Checked += toggleButtonChecked;
+            wylogujButton.Click += (sender, args) => wylogujButtonClick();
             zapiszButton.Click += (sender, args) => customMessageBox.Close();
 
             var stackPanel = new StackPanel();
             stackPanel.Children.Add(bezpiecznaStrefa);
             stackPanel.Children.Add(toggleButton);
+            stackPanel.Children.Add(wylogujButton);
             stackPanel.Children.Add(zapiszButton);
 
             customMessageBox.Content = stackPanel;
@@ -206,6 +219,12 @@ namespace Saper
         private void toggleButtonChecked(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Dupa");
+        }
+
+        private void wylogujButtonClick()
+        {
+            Process.Start(Process.GetCurrentProcess().MainModule.FileName);
+            Application.Current.Shutdown();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Poziom_latwy">
+        Title="Gra">
     <Grid>
         <Grid Style="{StaticResource pansze}">
             <Grid.RowDefinitions>

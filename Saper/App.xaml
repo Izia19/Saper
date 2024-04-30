@@ -208,33 +208,6 @@
         </Style>
 
 
-        <Style TargetType="DataGrid">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="#FFBEBC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#FFBEBC"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FFece5"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="ColumnHeaderStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#FFBEBC"/>
-                        <Setter Property="FontSize" Value="30"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="CellStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="#FFBEBC"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
         <Style TargetType="ListView">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Background" Value="#FFBEBC"/>
@@ -253,6 +226,7 @@
                     </Style>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Focusable" Value="False"/>
         </Style>
 
 
