@@ -27,24 +27,55 @@ namespace Saper
         public string level;
         public Window window_okno_glowne;
         private ToggleButton lastClickedButton = null;
+        public bool czyBezpiecznaStrefa;
 
         public okno_glowne()
         {
             OpenWindowsAsync();
             InitializeComponent();
             window_okno_glowne = this;
-            nick_u.Content += " " + userNick;
+            nick_u.Content = userNick;
+            Start.IsEnabled = false;
         }
-
         private async void OpenWindowsAsync()
         {
             ladowanie ladowanie = new ladowanie();
             ladowanie.ShowDialog();
             this.userNick = ladowanie.userNick;
         }
+        private void SprawdzWynikiUzytkownika()
+        {
+            try
+            {
+                string connectionString = "server=localhost;user id=root;password=;database=saper";
+                MySqlConnection conn = new MySqlConnection(connectionString);
+                conn.Open();
+                string query = "SELECT max(Wynik) FROM rekordy WHERE Poziom = @level AND Nick = @userNick";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@level", level);
+                cmd.Parameters.AddWithValue("@userNick", userNick);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    string wynik = result.ToString();
+                    wyniki_uzytkownika.Content = wynik;
+                }
+                else
+                {
+                    wyniki_uzytkownika.Content = " ";
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Błąd " + e);
+            }
+        }
 
         private void Poziomy_Click(object sender, RoutedEventArgs e)
         {
+            
             ToggleButton clickedButton = sender as ToggleButton;
 
             if (clickedButton != null)
@@ -62,12 +93,13 @@ namespace Saper
                     }
                     lastClickedButton = clickedButton;
                     level = lastClickedButton.Name;
+                    SprawdzWynikiUzytkownika();
                     clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB");
                     Tabela_wynikow();
-                }
-            }
 
-            
+                    Start.IsEnabled = true;
+                }
+            }  
         }
 
         public void Tabela_wynikow()
@@ -129,7 +161,9 @@ namespace Saper
 
         private void Ustawienia(object sender, RoutedEventArgs e)
         {
-            CustomMessageBox.MessageBoxUstawienia();
+            czyBezpiecznaStrefa = CustomMessageBox.czyBezpiecznaStrefa;
+            userNick = CustomMessageBox.MessageBoxUstawienia(userNick, czyBezpiecznaStrefa);
+            nick_u.Content = userNick;
         }
     }
 }
