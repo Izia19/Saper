@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Okno główne" Height="810" Width="1000">
+
     <Grid Style="{StaticResource glowny_grid}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -35,91 +36,90 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource plansza_kwadratow}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <Border Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource plansza_kwadratow}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0"/>
-            <TextBlock Grid.Row="0" Grid.Column="1"/>
-            <TextBlock Grid.Row="0" Grid.Column="2"/>
-            <TextBlock Grid.Row="0" Grid.Column="3"/>
-            <TextBlock Grid.Row="0" Grid.Column="7"/>
-            <TextBlock Grid.Row="0" Grid.Column="8"/>
+                <Border Grid.Row="0" Grid.Column="0"/>
+                <Border Grid.Row="0" Grid.Column="1"/>
+                <Border Grid.Row="0" Grid.Column="2"/>
+                <Border Grid.Row="0" Grid.Column="3"/>
+                <Border Grid.Row="0" Grid.Column="7"/>
+                <Border Grid.Row="0" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0"/>
-            <TextBlock Grid.Row="1" Grid.Column="1"/>
-            <TextBlock Grid.Row="1" Grid.Column="2"/>
+                <Border Grid.Row="1" Grid.Column="0"/>
+                <Border Grid.Row="1" Grid.Column="1"/>
+                <Border Grid.Row="1" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0"/>
-            <TextBlock Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Grid.Row="2" Grid.Column="2"/>
-            <TextBlock Grid.Row="2" Grid.Column="3"/>
-            <TextBlock Grid.Row="2" Grid.Column="8"/>
+                <Border Grid.Row="2" Grid.Column="0"/>
+                <Border Grid.Row="2" Grid.Column="1"/>
+                <Border Grid.Row="2" Grid.Column="2"/>
+                <Border Grid.Row="2" Grid.Column="3"/>
+                <Border Grid.Row="2" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="3"/>
-            <TextBlock Grid.Row="3" Grid.Column="4"/>
-            <TextBlock Grid.Row="3" Grid.Column="5"/>
+                <Border Grid.Row="3" Grid.Column="3"/>
+                <Border Grid.Row="3" Grid.Column="4"/>
+                <Border Grid.Row="3" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="4"/>
-            <TextBlock Grid.Row="4" Grid.Column="5"/>
+                <Border Grid.Row="4" Grid.Column="4"/>
+                <Border Grid.Row="4" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="5" Grid.Column="5"/>
+                <Border Grid.Row="5" Grid.Column="5"/>
 
-            <TextBlock Grid.Row="6" Grid.Column="1"/>
-            <TextBlock Grid.Row="6" Grid.Column="2"/>
-            <TextBlock Grid.Row="6" Grid.Column="8"/>
+                <Border Grid.Row="6" Grid.Column="1"/>
+                <Border Grid.Row="6" Grid.Column="2"/>
+                <Border Grid.Row="6" Grid.Column="8"/>
 
-            <TextBlock Grid.Row="7" Grid.Column="0"/>
-            <TextBlock Grid.Row="7" Grid.Column="1"/>
-            <TextBlock Grid.Row="7" Grid.Column="2"/>
+                <Border Grid.Row="7" Grid.Column="0"/>
+                <Border Grid.Row="7" Grid.Column="1"/>
+                <Border Grid.Row="7" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="8" Grid.Column="5"/>
-            <TextBlock Grid.Row="8" Grid.Column="6"/>
+                <Border Grid.Row="8" Grid.Column="5"/>
+                <Border Grid.Row="8" Grid.Column="6"/>
 
-        </Grid>
+            </Grid>
+        </Border>
 
 
         <!--Column 2-->
         <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource ciemny_rozowy_grid}">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="nick_u" Grid.Column="0" Content=""/>
-                <Button Grid.Column="1" Style="{StaticResource przycisk_ustawienia}"></Button>
+                <Label x:Name="wyniki_uzytkownika" Grid.Column="1" Content=""/>
+                <Button Grid.Column="2" Style="{StaticResource przycisk_ustawienia}" Click="Ustawienia">
+                    <Image Source="C:\Icons\ustawienia.png"/>
+                </Button>
             </Grid>
         </Border>
 
         <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource jasny_rozowy_grid}">
-            <!--<DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Miejsce   " Binding="{Binding Miejsce}"/>
-                    <DataGridTextColumn Header="Nick   " Binding="{Binding Ncick}"/>
-                    <DataGridTextColumn Header="Wynik   " Binding="{Binding Wynik}"/>
-                </DataGrid.Columns>
-            </DataGrid>-->
             <ListView x:Name="user_wyniki" ItemsSource="{Binding}">
                 <ListView.View>
                     <GridView>
@@ -136,10 +136,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Border>
 
-        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource przycisk_start}" Click="Graj">
+        <Button Grid.Column="1" Grid.Row="3" x:Name="Start" Style="{StaticResource przycisk_start}" Click="Graj">
             <Image Source="C:\Icons\start.png" Width="100" Height="100" VerticalAlignment="Center"/>
         </Button>
     </Grid>

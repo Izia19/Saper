@@ -43,21 +43,7 @@
             </Style.Resources>
         </Style>
 
-        <Style TargetType="Grid" x:Key="plansza_kwadratow">
-            <Setter Property="Background" Value="#FFCBC1"/>
-            <Setter Property="Margin" Value="10"/>
-            <Style.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Background" Value="#FFABAB"/>
-                    <Setter Property="Height" Value="50"/>
-                    <Setter Property="Width" Value="50"/>
-                    <Setter Property="Padding" Value="1"/>
-                    <Setter Property="Margin" Value="1"/>
-                </Style>
-            </Style.Resources>
-        </Style>
 
-        
         <Style TargetType="Border" x:Key="BorderBaseStyle">
             <Setter Property="Margin" Value="15"/>
             <Setter Property="CornerRadius" Value="10"/>
@@ -71,7 +57,22 @@
             <Setter Property="Background" Value="#FFBEBC"/>
         </Style>
 
-        
+        <Style TargetType="Border" x:Key="plansza_kwadratow" BasedOn="{StaticResource BorderBaseStyle}">
+            <Setter Property="Background" Value="#FFCBC1"/>
+            <Setter Property="Padding" Value="0"/>
+            <Style.Resources>         
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="#FFABAB"/>
+                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="Height" Value="45"/>
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Padding" Value="1"/>
+                    <Setter Property="Margin" Value="1"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -152,16 +153,14 @@
             <Setter Property="Margin" Value="15"/>
         </Style>
 
-        <Style TargetType="Button" x:Key="przycisk_ustawienia">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="50"/>
+        <Style TargetType="Button" x:Key="przycisk_ustawienia" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="60"/>
             <Setter Property="Margin" Value="10 15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="#FF9999"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush ImageSource="C:\Icons\ustawienia.png"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Background" Value="#FF9999"/>
         </Style>
 
         <Style TargetType="Button" x:Key="poziomy_menu_przycisk" BasedOn="{StaticResource ButtonBaseStyle}">
@@ -172,7 +171,28 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
-        
+        <Style TargetType="ToggleButton" x:Key="ToogleButtonSlider">
+            <Setter Property="MaxHeight" Value="30"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="MaxWidth" Value="60"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="#FFBEBC" CornerRadius="15">
+                            <Ellipse x:Name="circle" Fill="#FF9999" HorizontalAlignment="Left" Margin="4" Width="22"></Ellipse>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="circle" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <Style TargetType="TextBox">
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="150"/>
@@ -180,39 +200,11 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Background" Value="#FF9999"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#FF9999"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="#FFece5"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Calibri"/>
-        </Style>
-
-
-        <Style TargetType="DataGrid">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="#FFBEBC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#FFBEBC"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FFece5"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="ColumnHeaderStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#FFBEBC"/>
-                        <Setter Property="FontSize" Value="30"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="CellStyle">
-                <Setter.Value>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Background" Value="#FFBEBC"/>
-                    </Style>
-                </Setter.Value>
-            </Setter>
         </Style>
 
 
@@ -231,9 +223,20 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="BorderThickness" Value="0"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" />
+                                <Setter Property="BorderBrush" Value="#FFBEBC"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" />
+                                <Setter Property="BorderBrush" Value="#FFBEBC"/>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Focusable" Value="False"/>
         </Style>
 
 
@@ -247,6 +250,16 @@
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="3"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="textBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFece5"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
     </Application.Resources>

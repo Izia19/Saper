@@ -25,6 +25,7 @@ namespace Saper
     {
         public string userNick;
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
+        public Random random = new Random();
 
         public logowanie()
         {
@@ -56,7 +57,26 @@ namespace Saper
                         }
                         else
                         {
-                            //jesli nie
+                            bool jestNick = true;
+                            while (jestNick)
+                            {
+                                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
+                                MySqlCommand cmd = new MySqlCommand(query, conn);
+                                cmd.Parameters.AddWithValue("@userNick", userNick);
+
+                                int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
+
+                                if(rowCount > 0)
+                                {
+                                    string dodajDoNicku = random.Next(0, 10).ToString();
+                                    userNick += dodajDoNicku;
+                                }
+                                else
+                                {
+                                    jestNick = false;
+                                }
+                            }
+                            nick.Text = userNick;
                         }
                     });
                 }
