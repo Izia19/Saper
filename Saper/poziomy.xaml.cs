@@ -41,7 +41,7 @@ namespace Saper
         public Window window_poziomy;
         public Window window_okno_glowne;
 
-        public poziomy(int numberOfButton, int bombCount, string level, string userNick, Window window_okno_glowne)
+        public poziomy(int numberOfButton, int bombCount, string level, string userNick, Window window_okno_glowne, bool czyBezpiecznaStrefa)
         {
             this.window_okno_glowne = window_okno_glowne;
             window_poziomy = this;
@@ -82,6 +82,11 @@ namespace Saper
             minutes = 0;
             hours = 0;
             czas.Text = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+
+            if (!czyBezpiecznaStrefa)
+            {
+                PlaceBombs(-1, -1);
+            }
         }
 
         private void FirstButtonClick(int row, int col)

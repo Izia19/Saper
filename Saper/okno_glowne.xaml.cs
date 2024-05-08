@@ -27,7 +27,7 @@ namespace Saper
         public string level;
         public Window window_okno_glowne;
         private ToggleButton lastClickedButton = null;
-        public bool czyBezpiecznaStrefa;
+        public bool czyBezpiecznaStrefa = true;
 
         public okno_glowne()
         {
@@ -154,15 +154,15 @@ namespace Saper
                 bombCount = 100;
             }
    
-            poziomy poziom = new poziomy(numberOfButton, bombCount, level, userNick, window_okno_glowne);
+            poziomy poziom = new poziomy(numberOfButton, bombCount, level, userNick, window_okno_glowne, false);
             this.Hide();
             poziom.ShowDialog();
         }
 
         private void Ustawienia(object sender, RoutedEventArgs e)
         {
-            czyBezpiecznaStrefa = CustomMessageBox.czyBezpiecznaStrefa;
             userNick = CustomMessageBox.MessageBoxUstawienia(userNick, czyBezpiecznaStrefa);
+            czyBezpiecznaStrefa = CustomMessageBox.czyBezpiecznaStrefa;
             nick_u.Content = userNick;
         }
     }
