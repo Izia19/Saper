@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -167,6 +168,7 @@ namespace Saper
                 {
                     timer.Stop();
                     button.Content = bombaImage;
+                    PlayExplosionAnimation(button);
 
                     CustomMessageBox.MessageBoxYesNo("Koniec gry. Chcesz zresetować? Nie powoduje powrót do menu", (result) =>
                     {
@@ -195,6 +197,40 @@ namespace Saper
             }
             remaining_fields -= 1;
             CheckGameResult();
+        }
+        private void PlayExplosionAnimation(Button button)
+        {
+            Image explosionImage = new Image
+            {
+                Source = new BitmapImage(new Uri("C:/Icons/wybuch.png")),
+                Stretch = Stretch.Fill,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            button.Content = explosionImage;
+
+            DoubleAnimation scaleXAnimation = new DoubleAnimation
+            {
+                To = 1,
+                Duration = TimeSpan.FromSeconds(1)
+            };
+
+            DoubleAnimation scaleYAnimation = new DoubleAnimation
+            {
+                To = 1,
+                Duration = TimeSpan.FromSeconds(1)
+            };
+
+            scaleXAnimation.Completed += (s, e) =>
+            {
+                button.Content = bombaImage;
+            };
+
+            explosionImage.RenderTransform = new ScaleTransform(0.5, 0.5);
+            explosionImage.RenderTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
+            explosionImage.RenderTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
+
         }
         private void OdkryjSasiedniePola(int row, int col)
         {
