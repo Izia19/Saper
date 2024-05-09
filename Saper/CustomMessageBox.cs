@@ -287,8 +287,8 @@ namespace Saper
             try
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @newUserNick";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
+                string countNick = "SELECT COUNT(*) FROM rekordy WHERE Nick = @newUserNick";
+                MySqlCommand cmd = new MySqlCommand(countNick, conn);
                 cmd.Parameters.AddWithValue("@newUserNick", newUserNick);
 
                 int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
@@ -299,8 +299,8 @@ namespace Saper
                     bool jestNick = true;
                     while (jestNick)
                     {
-                        string query2 = "SELECT COUNT(*) FROM rekordy WHERE Nick = @newUserNick";
-                        MySqlCommand cmd2 = new MySqlCommand(query2, conn);
+                        string countNick2 = "SELECT COUNT(*) FROM rekordy WHERE Nick = @newUserNick";
+                        MySqlCommand cmd2 = new MySqlCommand(countNick2, conn);
                         cmd2.Parameters.AddWithValue("@newUserNick", newUserNick);
                         int rowCount2 = Convert.ToInt32(cmd2.ExecuteScalar());
 

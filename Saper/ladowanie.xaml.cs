@@ -23,10 +23,10 @@ namespace Saper
         public ladowanie()
         {
             InitializeComponent();
-            OpenWindowsAsync();
+            OtworzOknaAsync();
         }
 
-        private async void OpenWindowsAsync()
+        private async void OtworzOknaAsync()
         {
             await Task.Delay(5000);
             this.Close();
