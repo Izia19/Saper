@@ -24,20 +24,20 @@ namespace Saper
         public CustomMessageBox CustomMessageBox = new CustomMessageBox();
 
         public string userNick;
-        public string level;
-        public Window window_okno_glowne;
-        private ToggleButton lastClickedButton = null;
+        public string poziom;
+        public Window oknoGlowne;
+        private ToggleButton ostatnioKliknietyPrzycisk = null;
         public bool czyBezpiecznaStrefa = true;
 
         public okno_glowne()
         {
-            OpenWindowsAsync();
+            OtworzOknaAsync();
             InitializeComponent();
-            window_okno_glowne = this;
+            oknoGlowne = this;
             nick_u.Content = userNick;
             Start.IsEnabled = false;
         }
-        private async void OpenWindowsAsync()
+        private async void OtworzOknaAsync()
         {
             ladowanie ladowanie = new ladowanie();
             ladowanie.ShowDialog();
@@ -50,9 +50,9 @@ namespace Saper
                 string connectionString = "server=localhost;user id=root;password=;database=saper";
                 MySqlConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
-                string query = "SELECT max(Wynik) FROM rekordy WHERE Poziom = @level AND Nick = @userNick";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@level", level);
+                string maxScore = "SELECT max(Wynik) FROM rekordy WHERE Poziom = @level AND Nick = @userNick";
+                MySqlCommand cmd = new MySqlCommand(maxScore, conn);
+                cmd.Parameters.AddWithValue("@level", poziom);
                 cmd.Parameters.AddWithValue("@userNick", userNick);
 
                 object result = cmd.ExecuteScalar();
@@ -60,7 +60,7 @@ namespace Saper
                 if (result != null)
                 {
                     string wynik = result.ToString();
-                    wyniki_uzytkownika.Content = wynik;
+                    wyniki_uzytkownika.Content = "Rekord: " + wynik;
                 }
                 else
                 {
@@ -72,37 +72,34 @@ namespace Saper
                 MessageBox.Show("Błąd " + e);
             }
         }
-
-        private void Poziomy_Click(object sender, RoutedEventArgs e)
+        private void PoziomyClick(object sender, RoutedEventArgs e)
         {
-            
-            ToggleButton clickedButton = sender as ToggleButton;
+            ToggleButton kliknietyPrzycisk = sender as ToggleButton;
 
-            if (clickedButton != null)
+            if (kliknietyPrzycisk != null)
             {
-                if (clickedButton == lastClickedButton)
+                if (kliknietyPrzycisk == ostatnioKliknietyPrzycisk)
                 {
-                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFBEBC");
+                    kliknietyPrzycisk.Background = (Brush)new BrushConverter().ConvertFrom("#FFBEBC");
                 }
                 else
                 {
-                    if (lastClickedButton != null)
+                    if (ostatnioKliknietyPrzycisk != null)
                     {
-                        lastClickedButton.IsChecked = false;
-                        lastClickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFBEBC");
+                        ostatnioKliknietyPrzycisk.IsChecked = false;
+                        ostatnioKliknietyPrzycisk.Background = (Brush)new BrushConverter().ConvertFrom("#FFBEBC");
                     }
-                    lastClickedButton = clickedButton;
-                    level = lastClickedButton.Name;
+                    ostatnioKliknietyPrzycisk = kliknietyPrzycisk;
+                    poziom = ostatnioKliknietyPrzycisk.Name;
                     SprawdzWynikiUzytkownika();
-                    clickedButton.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB");
-                    Tabela_wynikow();
+                    kliknietyPrzycisk.Background = (Brush)new BrushConverter().ConvertFrom("#FFABAB");
+                    TabelaWynikow();
 
                     Start.IsEnabled = true;
                 }
             }  
         }
-
-        public void Tabela_wynikow()
+        public void TabelaWynikow()
         {
             List<User> lista = new List<User>();
             try
@@ -110,9 +107,9 @@ namespace Saper
                 string connectionString = "server=localhost;user id=root;password=;database=saper";
                 MySqlConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
-                string query = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik LIMIT 10";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@level", level);
+                string bestScore = "SELECT Nick, Wynik FROM rekordy WHERE Poziom = @level ORDER BY Wynik LIMIT 10";
+                MySqlCommand cmd = new MySqlCommand(bestScore, conn);
+                cmd.Parameters.AddWithValue("@level", poziom);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -133,32 +130,30 @@ namespace Saper
                 MessageBox.Show("Błąd " + e);
             }
         }
-
         public void Graj(object sender, RoutedEventArgs e)
         {
-            int bombCount = 0;
-            int numberOfButton = 0;
-            if (level == "latwy")
+            int iloscBomb = 0;
+            int iloscPrzyciskow = 0;
+            if (this.poziom == "latwy")
             {
-                numberOfButton = 10;
-                bombCount = 15;
+                iloscPrzyciskow = 10;
+                iloscBomb = 15;
             }
-            else if (level == "sredni")
+            else if (this.poziom == "sredni")
             {
-                numberOfButton = 15;
-                bombCount = 40;
+                iloscPrzyciskow = 15;
+                iloscBomb = 40;
             }
-            else if (level == "trudny")
+            else if (this.poziom == "trudny")
             {
-                numberOfButton = 20;
-                bombCount = 100;
+                iloscPrzyciskow = 20;
+                iloscBomb = 100;
             }
    
-            poziomy poziom = new poziomy(numberOfButton, bombCount, level, userNick, window_okno_glowne, false);
+            poziomy poziomy = new poziomy(iloscPrzyciskow, iloscBomb, poziom, userNick, oknoGlowne, czyBezpiecznaStrefa);
             this.Hide();
-            poziom.ShowDialog();
+            poziomy.ShowDialog();
         }
-
         private void Ustawienia(object sender, RoutedEventArgs e)
         {
             userNick = CustomMessageBox.MessageBoxUstawienia(userNick, czyBezpiecznaStrefa);
