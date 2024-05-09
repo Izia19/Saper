@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Saper"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="logowanie" Height="450" Width="800">
+        Title="Logowanie" Height="450" Width="800">
 
     <Grid Style="{StaticResource glowny_grid}">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>

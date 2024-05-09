@@ -29,7 +29,7 @@
             </Grid>
             <Canvas x:Name="explosionCanvas" Visibility="Collapsed"/>
 
-            <UniformGrid Grid.Row="1" x:Name="gameGrid" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <UniformGrid Grid.Row="1" x:Name="rozgrywka_grid" Style="{StaticResource pola}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
     </Grid>
