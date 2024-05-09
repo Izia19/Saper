@@ -18,7 +18,7 @@ namespace Saper
         public static System.Windows.Media.Color ciemnyRoz = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#FF9999");
         public static System.Windows.Media.Color bardzoJasnyRoz = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#FFECE5");
 
-        public string userNick { get; set; }
+        public string userNick;
         public bool czyBezpiecznaStrefa;
         public Random random = new Random(); 
 
@@ -149,7 +149,7 @@ namespace Saper
             var customMessageBox = new Window
             {
                 Width = 250,
-                Height = 350,
+                Height = 250,
                 Background = new SolidColorBrush(bardzoJasnyRoz),
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 WindowStyle = WindowStyle.None,
@@ -158,7 +158,7 @@ namespace Saper
             var title = new TextBlock
             {
                 Text = "Ustawienia",
-                FontSize = 30,
+                FontSize = 33,
                 Foreground = new SolidColorBrush(ciemnyRoz),
                 Style = (Style)Application.Current.FindResource("textBlock"),
             };
@@ -170,16 +170,35 @@ namespace Saper
                 Style = (Style)Application.Current.FindResource("textBlock"),
             };
 
+            var tak = new TextBlock
+            {
+                Text = "Tak",
+                FontSize = 13,
+                Foreground = new SolidColorBrush(ciemnyRoz),
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = (Style)Application.Current.FindResource("textBlock"),
+            };
+
             var toggleButton = new ToggleButton
             {
                 IsChecked = czyBezpiecznaStrefa,
                 Style = (Style)Application.Current.FindResource("ToogleButtonSlider")
             };
 
+            var nie = new TextBlock
+            {
+                Text = "Nie",
+                FontSize = 13,
+                Foreground = new SolidColorBrush(ciemnyRoz),
+                VerticalAlignment = VerticalAlignment.Center,
+                Style = (Style)Application.Current.FindResource("textBlock"),
+            };
+
             var zmienNick = new TextBlock
             {
                 Text = "Zmien nick:",
                 Foreground = new SolidColorBrush(ciemnyRoz),
+                Margin = new Thickness(0),
                 Style = (Style)Application.Current.FindResource("textBlock"),
             };
 
@@ -246,15 +265,23 @@ namespace Saper
             var stackPanelHorizontal = new StackPanel();
             stackPanelHorizontal.Orientation = Orientation.Horizontal;
             stackPanelHorizontal.HorizontalAlignment = HorizontalAlignment.Center;
-            stackPanelHorizontal.Children.Add(wylogujButton);
-            stackPanelHorizontal.Children.Add(zapiszButton);
+            stackPanelHorizontal.Margin = new Thickness(0,0,0,15);
+            stackPanelHorizontal.Children.Add(nie);
+            stackPanelHorizontal.Children.Add(toggleButton);
+            stackPanelHorizontal.Children.Add(tak);
+
+            var stackPanelHorizontalButton = new StackPanel();
+            stackPanelHorizontalButton.Orientation = Orientation.Horizontal;
+            stackPanelHorizontalButton.HorizontalAlignment = HorizontalAlignment.Center;
+            stackPanelHorizontalButton.Children.Add(wylogujButton);
+            stackPanelHorizontalButton.Children.Add(zapiszButton);
 
             stackPanel.Children.Add(title);
             stackPanel.Children.Add(bezpiecznaStrefa);
-            stackPanel.Children.Add(toggleButton);
+            stackPanel.Children.Add(stackPanelHorizontal);
             stackPanel.Children.Add(zmienNick);
             stackPanel.Children.Add(border);
-            stackPanel.Children.Add(stackPanelHorizontal);    
+            stackPanel.Children.Add(stackPanelHorizontalButton);    
 
             customMessageBox.Content = stackPanel;
 
