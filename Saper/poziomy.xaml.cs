@@ -311,21 +311,24 @@ namespace Saper
                         int id = Convert.ToInt32(cmd2.ExecuteScalar());
 
                         string selectScore = "SELECT Wynik FROM rekordy WHERE Id = @id";
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.CommandText = selectScore;
-                        string time = Convert.ToString(cmd.ExecuteScalar());
+                        MySqlCommand cmd3 = new MySqlCommand(selectScore, conn);
+                        cmd3.Parameters.Clear();
+                        cmd3.Parameters.AddWithValue("@id", id);
+                        cmd3.CommandText = selectScore;
 
-                        int bestTime = Convert.ToInt32(double.Parse(time));
+                        string score = Convert.ToString(cmd3.ExecuteScalar());
 
-                        if (gameSeconds < bestTime)
+                        int bestScore = Convert.ToInt32(double.Parse(score));
+
+                        if (gameSeconds < bestScore)
                         {
-                            string selectId = "UPDATE rekordy SET Wynik = @wynik WHERE Id = @id";
-                            cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@wynik", gameSeconds);
-                            cmd.Parameters.AddWithValue("@id", id);
-                            cmd.CommandText = selectId;
-                            cmd.ExecuteNonQuery();
+                            string updateScore = "UPDATE rekordy SET Wynik = @wynik WHERE Id = @id";
+                            MySqlCommand cmd4 = new MySqlCommand(updateScore, conn);
+                            cmd4.Parameters.Clear();
+                            cmd4.Parameters.AddWithValue("@wynik", gameSeconds);
+                            cmd4.Parameters.AddWithValue("@id", id);
+                            cmd4.CommandText = updateScore;
+                            cmd4.ExecuteNonQuery();
 
                             CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę i ustanowiłeś nowy rekord!");
                             this.Close();
@@ -340,13 +343,14 @@ namespace Saper
                     }
                     else
                     {
-                        checkRekord = "INSERT INTO rekordy (Nick, Wynik, Poziom) VALUES (@n, @wynik, @p)";
-                        cmd.CommandText = checkRekord;
-                        cmd.Parameters.Clear();
-                        cmd.Parameters.AddWithValue("@n", userNick);
-                        cmd.Parameters.AddWithValue("@wynik", gameSeconds);
-                        cmd.Parameters.AddWithValue("@p", poziom);
-                        cmd.ExecuteNonQuery();
+                        string insertUserScore = "INSERT INTO rekordy (Nick, Wynik, Poziom) VALUES (@n, @wynik, @p)";
+                        MySqlCommand cmd2 = new MySqlCommand(insertUserScore, conn);
+                        cmd2.CommandText = insertUserScore;
+                        cmd2.Parameters.Clear();
+                        cmd2.Parameters.AddWithValue("@n", userNick);
+                        cmd2.Parameters.AddWithValue("@wynik", gameSeconds);
+                        cmd2.Parameters.AddWithValue("@p", poziom);
+                        cmd2.ExecuteNonQuery();
 
                         CustomMessageBox.MessageBoxOk("Gratulacje! Wygrałeś grę i ustanowiłeś nowy rekord!");
                     }
