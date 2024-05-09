@@ -41,8 +41,8 @@ namespace Saper
             {
                 conn.Open();
                 userNick = nick.Text;
-                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
+                string countNick = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
+                MySqlCommand cmd = new MySqlCommand(countNick, conn);
                 cmd.Parameters.AddWithValue("@userNick", userNick);
 
                 int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
@@ -60,8 +60,8 @@ namespace Saper
                             bool jestNick = true;
                             while (jestNick)
                             {
-                                string query = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
-                                MySqlCommand cmd = new MySqlCommand(query, conn);
+                                string countNick2 = "SELECT COUNT(*) FROM rekordy WHERE Nick = @userNick";
+                                MySqlCommand cmd = new MySqlCommand(countNick2, conn);
                                 cmd.Parameters.AddWithValue("@userNick", userNick);
 
                                 int rowCount = Convert.ToInt32(cmd.ExecuteScalar());
@@ -82,11 +82,11 @@ namespace Saper
                 }
                 else
                 {
-                    string dodajQuery = "INSERT INTO rekordy (Nick) VALUES (@userNick)";
-                    MySqlCommand dodajCmd = new MySqlCommand(dodajQuery, conn);
-                    dodajCmd.Parameters.AddWithValue("@userNick", userNick);
+                    string insertNick = "INSERT INTO rekordy (Nick) VALUES (@userNick)";
+                    MySqlCommand insertCmd = new MySqlCommand(insertNick, conn);
+                    insertCmd.Parameters.AddWithValue("@userNick", userNick);
 
-                    dodajCmd.ExecuteNonQuery();
+                    insertCmd.ExecuteNonQuery();
 
                     CustomMessageBox.MessageBoxOk("Dodano: " + userNick);
                     this.Close();

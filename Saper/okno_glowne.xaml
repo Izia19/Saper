@@ -30,9 +30,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <ToggleButton Grid.Row="0" Grid.Column="0" x:Name="latwy" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom łatwy</ToggleButton>
-                <ToggleButton Grid.Row="1" Grid.Column="0" x:Name="sredni" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom średni</ToggleButton>
-                <ToggleButton Grid.Row="2" Grid.Column="0" x:Name="trudny" Style="{StaticResource przycisk_poziomy}" Click="Poziomy_Click">Poziom trudny</ToggleButton>
+                <ToggleButton Grid.Row="0" Grid.Column="0" x:Name="latwy" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom łatwy</ToggleButton>
+                <ToggleButton Grid.Row="1" Grid.Column="0" x:Name="sredni" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom średni</ToggleButton>
+                <ToggleButton Grid.Row="2" Grid.Column="0" x:Name="trudny" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom trudny</ToggleButton>
             </Grid>
         </Border>
 
@@ -112,7 +112,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="nick_u" Grid.Column="0" Content=""/>
-                <Label x:Name="wyniki_uzytkownika" Grid.Column="1" Content=""/>
+                <Label x:Name="wyniki_uzytkownika" Grid.Column="1" Content="Rekord: " Margin="0 10"/>
                 <Button Grid.Column="2" Style="{StaticResource przycisk_ustawienia}" Click="Ustawienia">
                     <Image Source="C:\Icons\ustawienia.png"/>
                 </Button>

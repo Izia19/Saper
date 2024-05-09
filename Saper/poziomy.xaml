@@ -24,8 +24,8 @@
 
                 <TextBlock Grid.Column="0" x:Name="czas" Style="{StaticResource poziomy_menu}"/>
                 <TextBlock Grid.Column="1" x:Name="bomby" Style="{StaticResource poziomy_menu}"/>
-                <Button Grid.Column="2" Content="Restart" Click="RestartButton_Click" Style="{StaticResource poziomy_menu_przycisk}"/>
-                <Button Grid.Column="3" Content="Powrót" Click="ButtonPowrot" Style="{StaticResource poziomy_menu_przycisk}"/>
+                <Button Grid.Column="2" Content="Restart" Click="PrzyciskRestart" Style="{StaticResource poziomy_menu_przycisk}"/>
+                <Button Grid.Column="3" Content="Powrót" Click="PrzyciskPowrot" Style="{StaticResource poziomy_menu_przycisk}"/>
             </Grid>
             <Canvas x:Name="explosionCanvas" Visibility="Collapsed"/>
 
