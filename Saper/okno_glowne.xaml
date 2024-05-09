@@ -9,6 +9,7 @@
         Title="Okno główne" Height="810" Width="1000">
 
     <Grid Style="{StaticResource glowny_grid}">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
             <ColumnDefinition/>
@@ -30,9 +31,10 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <ToggleButton Grid.Row="0" Grid.Column="0" x:Name="latwy" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom łatwy</ToggleButton>
-                <ToggleButton Grid.Row="1" Grid.Column="0" x:Name="sredni" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom średni</ToggleButton>
-                <ToggleButton Grid.Row="2" Grid.Column="0" x:Name="trudny" Style="{StaticResource przycisk_poziomy}" Click="PoziomyClick">Poziom trudny</ToggleButton>
+                <ToggleButton Grid.Row="0" Grid.Column="0" x:Name="latwy" Style="{StaticResource przycisk_poziomy}" Click="Poziomy">Poziom łatwy</ToggleButton>
+                <ToggleButton Grid.Row="1" Grid.Column="0" x:Name="sredni" Style="{StaticResource przycisk_poziomy}" Click="Poziomy">Poziom średni</ToggleButton>
+                <ToggleButton Grid.Row="2" Grid.Column="0" x:Name="trudny" Style="{StaticResource przycisk_poziomy}" Click="Poziomy">Poziom trudny</ToggleButton>
+                
             </Grid>
         </Border>
 

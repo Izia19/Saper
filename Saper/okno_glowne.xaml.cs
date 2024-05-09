@@ -72,7 +72,7 @@ namespace Saper
                 MessageBox.Show("Błąd " + e);
             }
         }
-        private void PoziomyClick(object sender, RoutedEventArgs e)
+        private void Poziomy(object sender, RoutedEventArgs e)
         {
             ToggleButton kliknietyPrzycisk = sender as ToggleButton;
 

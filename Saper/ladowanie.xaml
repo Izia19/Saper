@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Saper"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="ladowanie" Height="450" Width="800">
+        Title="Ładowanie" Height="450" Width="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -17,5 +17,6 @@
         <Label Grid.Row="0" Content="SAPER" Style="{StaticResource naglowek}"/>
 
         <ProgressBar Grid.Row="1" IsIndeterminate="True"/>
+        
     </Grid>
 </Window>
