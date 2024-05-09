@@ -78,8 +78,8 @@ namespace Saper
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += TimerTick;
-            gameGrid.Rows = iloscPrzyciskow;
-            gameGrid.Columns = iloscPrzyciskow;
+            rozgrywka_grid.Rows = iloscPrzyciskow;
+            rozgrywka_grid.Columns = iloscPrzyciskow;
 
             seconds = 0;
             minutes = 0;
@@ -108,7 +108,7 @@ namespace Saper
                     button.Click += KlikniecieLewy;
                     button.MouseRightButtonDown += KliknieciePrawy;
                     button.Content = "";
-                    gameGrid.Children.Add(button);
+                    rozgrywka_grid.Children.Add(button);
                     tablicaPrzyciskow[i, j] = button;
                 }
             }
@@ -144,8 +144,8 @@ namespace Saper
             button.IsEnabled = false;
             var buttonImage = button.Content as Image;
 
-            int index = gameGrid.Children.IndexOf(button);
-            int columns = gameGrid.Columns;
+            int index = rozgrywka_grid.Children.IndexOf(button);
+            int columns = rozgrywka_grid.Columns;
             int row = index / columns;
             int col = index % columns;
 
@@ -397,7 +397,7 @@ namespace Saper
         public void Restart()
         {
             timer.Stop();
-            gameGrid.Children.Clear();
+            rozgrywka_grid.Children.Clear();
             GenerujPlansze();
             if (czyBezpiecznaStrefa)
             {
