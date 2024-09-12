@@ -14,7 +14,7 @@ Kultowa jednosobowa gra lat 80.
 
 ## Instalacja
 
- - 
- - 
- - 
+ 1) Przenieś plik
+ 2)
+ 3) 
 
