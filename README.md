@@ -14,9 +14,10 @@ Kultowa jednosobowa gra lat 80.
 
 ## Instalacja
 
- 1) Pobierz i rozpakuj "SaperExe.rar".
+ 1) Pobierz i rozpakuj "SaperExe.rar"
  2) Przenieś folder "Icons" na dysk C:\
     
     ![image](https://github.com/user-attachments/assets/8e3f3cc4-fff8-4b59-8b27-082e8a3e2b46)
- 4) Zaimportuj baze danych saper.sql
+ 3) Zaimportuj baze danych saper.sql
+ 4) Teraz możesz już grać 😄😄
 
