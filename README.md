@@ -14,7 +14,7 @@ Kultowa jednosobowa gra lat 80.
 
 ## Instalacja
 
- 1) Przenieś plik
- 2)
+ 1) Pobierz i rozpakuj "SuperExe.rar".
+ 2) Przenieś folder "Icons" na dysk C:
  3) 
 
